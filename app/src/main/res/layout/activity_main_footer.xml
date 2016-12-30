@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <View style="@style/ccc_1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/footer_1_linear"
+            style="@style/main_footer_linear">
+
+            <ImageView
+                android:id="@+id/footer_1_image"
+                style="@style/main_footer_image"
+                android:src="@mipmap/foot_1" />
+
+            <TextView
+                android:id="@+id/footer_1_text"
+                style="@style/main_footer_text"
+                android:text="首页" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_2_linear"
+            style="@style/main_footer_linear">
+
+            <ImageView
+                android:id="@+id/footer_2_image"
+                style="@style/main_footer_image"
+                android:src="@mipmap/foot_2" />
+
+            <TextView
+                android:id="@+id/footer_2_text"
+                style="@style/main_footer_text"
+                android:text="社区" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_3_linear"
+            style="@style/main_footer_linear">
+
+            <ImageView
+                android:id="@+id/footer_3_image"
+                style="@style/main_footer_image"
+                android:src="@mipmap/foot_3" />
+
+            <TextView
+                android:id="@+id/footer_3_text"
+                style="@style/main_footer_text"
+                android:text="招领" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_4_linear"
+            style="@style/main_footer_linear">
+
+            <ImageView
+                android:id="@+id/footer_4_image"
+                style="@style/main_footer_image"
+                android:src="@mipmap/foot_4" />
+
+            <TextView
+                android:id="@+id/footer_4_text"
+                style="@style/main_footer_text"
+                android:text="资讯" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_5_linear"
+            style="@style/main_footer_linear">
+
+            <ImageView
+                android:id="@+id/footer_5_image"
+                style="@style/main_footer_image"
+                android:src="@mipmap/foot_5" />
+
+            <TextView
+                android:id="@+id/footer_5_text"
+                style="@style/main_footer_text"
+                android:text="我的" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

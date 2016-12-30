@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/message_toolbar"
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/mWebView_back"
+            style="@style/back_img" />
+
+        <TextView
+            android:id="@+id/mWebView_news_type"
+            style="@style/page_title"
+            android:text="安师说" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#fff"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right">
+
+            <TextView
+                android:id="@+id/mWebView_news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#222"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mWebView_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mWebView_news_title"
+                android:layout_marginTop="5dp"
+                android:textColor="#999"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e2e2e2" />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/mWebView_web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

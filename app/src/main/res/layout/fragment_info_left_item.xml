@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/info_left_view"
+        android:layout_width="5dp"
+        android:layout_height="37dp"
+        android:layout_alignParentLeft="true"
+        android:background="#ff0000"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/info_left_relative"
+        android:layout_width="match_parent"
+        android:background="#f8f8f8"
+        android:layout_height="37dp"
+        android:layout_toRightOf="@id/info_left_view">
+
+        <TextView
+            android:id="@+id/info_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="计算机与信息工程学院"
+            android:textColor="#333"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:background="#e2e2e2" />
+    </RelativeLayout>
+
+</RelativeLayout>

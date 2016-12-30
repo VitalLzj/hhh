@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            app:layout_scrollFlags="scroll">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/message_toolbar"
+                style="@style/app_toolbar"
+                app:contentInsetStart="0dp"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <TextView
+                    style="@style/page_title"
+                    android:text="安师说" />
+            </android.support.v7.widget.Toolbar>
+
+            <cn.bingoogolapple.bgabanner.BGABanner
+                android:id="@+id/banner_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/message_toolbar"
+                app:banner_indicatorGravity="bottom|right"
+                app:banner_pageChangeDuration="2000"
+                app:banner_pointAutoPlayAble="true"
+                app:banner_pointAutoPlayInterval="2000"
+                app:banner_pointContainerBackground="#00000000"
+                app:banner_transitionEffect="defaultEffect" />
+        </RelativeLayout>
+
+        <com.student.aynu.widget.ViewPagerIndicator
+            android:id="@+id/id_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/pager_indicator_bg"
+            android:orientation="horizontal"
+            app:tabMode="fixed"
+            app:visible_tab_count="4" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/id_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

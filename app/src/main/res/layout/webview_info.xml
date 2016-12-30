@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/message_toolbar"
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/info_WebView_back"
+            style="@style/back_img" />
+
+        <TextView
+            android:id="@+id/info_WebView_yx_name"
+            style="@style/page_title"
+            android:text="安师说" />
+    </android.support.v7.widget.Toolbar>
+
+    <WebView
+        android:id="@+id/info_WebView_web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

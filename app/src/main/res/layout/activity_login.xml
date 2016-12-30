@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/reg_bg720"
+    android:fitsSystemWindows="true">
+
+    //圆角图
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/login_head"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+        app:riv_corner_radius="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/login_layout1"
+        style="@style/login_layout"
+        android:layout_below="@id/login_head"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/login_img1"
+            style="@style/login_img"
+            android:src="@mipmap/reg_1" />
+
+        <EditText
+            android:id="@+id/login_name"
+            style="@style/login_text"
+            android:layout_toRightOf="@id/login_img1"
+            android:hint="请输入您的账号(手机号)"
+            android:textCursorDrawable="@null" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/login_layout2"
+        style="@style/login_layout"
+        android:layout_below="@id/login_layout1"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/login_img2"
+            style="@style/login_img"
+            android:src="@mipmap/reg_2" />
+
+        <EditText
+            android:id="@+id/login_pwd"
+            style="@style/login_text"
+            android:layout_toRightOf="@id/login_img2"
+            android:hint="请输入您的登录密码"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@null" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#fff" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/login_login"
+        style="@style/login_bottom"
+        android:layout_below="@id/login_layout2"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_back"
+        android:text="登录" />
+
+    <RelativeLayout
+        android:id="@+id/login_layout3"
+        style="@style/login_layout"
+        android:layout_below="@id/login_login">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/login_or"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/login_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="OR"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/login_or"
+            android:background="#fff" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/login_regist"
+        style="@style/login_bottom"
+        android:layout_below="@id/login_layout3"
+        android:background="@drawable/register_back"
+        android:text="新用户注册" />
+
+    <TextView
+        android:id="@+id/login_miss"
+        style="@style/login_miss"
+        android:text="忘记密码" />
+</RelativeLayout>
