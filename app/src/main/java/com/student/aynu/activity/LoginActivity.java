@@ -12,7 +12,6 @@ import com.student.aynu.base.BaseActivity;
  */
 public class LoginActivity extends BaseActivity {
 
-    //新增提示
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
