@@ -24,7 +24,7 @@ import com.student.aynu.entity.Home_News;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.nohttp.JavaBeanRequest;
 import com.student.aynu.util.IpUtil;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 import com.student.aynu.webView.NewsWebViewActivity;
 import com.yolanda.nohttp.rest.Response;
 
@@ -181,7 +181,7 @@ public class HomeTitle4Fragment extends BaseViewpagerFragment {
                         //请求成功，更新ui
                         mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                     } else {
-                        Toast.showFaliureToast(getActivity(), response.get().getMessage());
+                        ToastUtil.showFaliureToast(getActivity(), response.get().getMessage());
                     }
                     break;
                 //加载更多
@@ -194,7 +194,7 @@ public class HomeTitle4Fragment extends BaseViewpagerFragment {
                         }
                     } else {
                         RecyclerViewStateUtils.setFooterViewState(getActivity(), mLRecyclerView, Constant.PAGE_SIZE, LoadingFooter.State.TheEnd, null);
-                        Toast.showFaliureToast(getActivity(), response.get().getMessage());
+                        ToastUtil.showFaliureToast(getActivity(), response.get().getMessage());
                     }
                     break;
             }

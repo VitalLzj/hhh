@@ -21,7 +21,7 @@ import com.student.aynu.entity.Home_banner;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.nohttp.JavaBeanRequest;
 import com.student.aynu.util.IpUtil;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 import com.student.aynu.widget.ViewPagerIndicator;
 import com.yolanda.nohttp.rest.Response;
 
@@ -152,7 +152,7 @@ public class HomeFragment extends BaseFragment {
                 }
                 mHandler.sendEmptyMessage(1);
             } else {
-                Toast.showFaliureToast(getActivity(), response.get().getMessage());
+                ToastUtil.showFaliureToast(getActivity(), response.get().getMessage());
             }
         }
 
@@ -182,7 +182,7 @@ public class HomeFragment extends BaseFragment {
                 }
                 mHandler.sendEmptyMessage(0);
             } else {
-                Toast.showFaliureToast(getActivity(), response.get().getMessage());
+                ToastUtil.showFaliureToast(getActivity(), response.get().getMessage());
             }
         }
 

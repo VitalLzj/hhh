@@ -27,7 +27,7 @@ import com.student.aynu.R;
 /**
  * Created by Yan Zhenjie on 2016/10/16.
  */
-public class Toast {
+public class ToastUtil {
 
     public static void show(Context context, CharSequence msg) {
         android.widget.Toast.makeText(context, msg, android.widget.Toast.LENGTH_LONG).show();
@@ -46,7 +46,7 @@ public class Toast {
     }
 
 
-    private static void showText(Context context, String msg) {
+    public static void showText(Context context, String msg) {
         android.widget.Toast toast = null;
         if (toast == null) {
             toast = android.widget.Toast.makeText(context, msg, android.widget.Toast.LENGTH_SHORT);

@@ -3,17 +3,21 @@ package com.student.aynu.application;
 import android.app.Activity;
 import android.app.Application;
 
+import com.student.aynu.constant.Constant;
 import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
 import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.NoHttp;
 
 import java.util.ArrayList;
 
+import cn.smssdk.SMSSDK;
+
 public class MyApp extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
+        SMSSDK.initSDK(this, Constant.MOB_APP_KEY, Constant.MOB_APP_SECRET);
         Logger.setDebug(true);// 开启NoHttp的调试模式, 配置后可看到请求过程、日志和错误信息。
         Logger.setTag("NoHttpSample");// 设置NoHttp打印Log的tag。
 

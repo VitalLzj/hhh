@@ -15,32 +15,29 @@
  */
 package com.student.aynu.base;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.student.aynu.application.MyApp;
 import com.student.aynu.nohttp.CallServer;
 import com.student.aynu.nohttp.HttpListener;
 import com.yolanda.nohttp.rest.Request;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private Context mContext;
     public MyApp mApplication;
+    public Gson gson;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.mContext = this;
         //禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        gson=new Gson();
         mApplication = (MyApp) getApplication();
         mApplication.init(this); // 把 this 传过去，，这里主要是要 得到当前的或者是出错的activity的包名和类名
         // 其实这里也可以，把获取的数据，，传过去，，不用传对象；；；

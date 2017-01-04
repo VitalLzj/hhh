@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import com.student.aynu.base.BaseFragment;
 import com.student.aynu.entity.Info_Data;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 import com.student.aynu.webView.InfoWebViewActivity;
 import com.student.aynu.webView.NewsWebViewActivity;
 import com.yolanda.nohttp.RequestMethod;
@@ -112,7 +111,7 @@ public class InfoFragment extends BaseFragment {
                     });
                 }
             } else {
-                Toast.showFaliureToast(getActivity(), gson.fromJson(response.get(), Info_Data.class).getMessage());
+                ToastUtil.showFaliureToast(getActivity(), gson.fromJson(response.get(), Info_Data.class).getMessage());
             }
         }
 

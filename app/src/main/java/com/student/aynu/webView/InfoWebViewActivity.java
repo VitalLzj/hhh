@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +51,7 @@ public class InfoWebViewActivity extends BaseActivity {
         mName = getIntent().getStringExtra("NEWS_TYPE");
 
         if (mContent_url == null || mName == null ) {
-            Toast.showFaliureToast(mContext, "加载数据失败，请重新进入");
+            ToastUtil.showFaliureToast(mContext, "加载数据失败，请重新进入");
             return;
         }
 

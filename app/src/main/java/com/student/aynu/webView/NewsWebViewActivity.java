@@ -2,23 +2,16 @@ package com.student.aynu.webView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +63,7 @@ public class NewsWebViewActivity extends BaseActivity {
         mTime = getIntent().getStringExtra("NEWS_TIME");
 
         if (mContent_url == null || mType == null || mTitle == null || mTime == null) {
-            Toast.showFaliureToast(mContext, "加载数据失败，请重新进入");
+            ToastUtil.showFaliureToast(mContext, "加载数据失败，请重新进入");
             return;
         }
 

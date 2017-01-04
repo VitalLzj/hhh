@@ -15,14 +15,12 @@
  */
 package com.student.aynu.nohttp;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
 import com.student.aynu.dialog.MyDialog;
-import com.student.aynu.dialog.WaitDialog;
-import com.student.aynu.util.Toast;
+import com.student.aynu.util.ToastUtil;
 import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.error.NetworkError;
 import com.yolanda.nohttp.error.NotFoundCacheError;
@@ -130,22 +128,22 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
     public void onFailed(int what, Response<T> response) {
         Exception exception = response.getException();
         if (exception instanceof NetworkError) {// 网络不好
-            Toast.show(mActivity, "请检查网络");
+            ToastUtil.show(mActivity, "请检查网络");
         } else if (exception instanceof TimeoutError) {// 请求超时
-            Toast.show(mActivity, "请求超时");
+            ToastUtil.show(mActivity, "请求超时");
         } else if (exception instanceof UnKnownHostError) {// 找不到服务器
-            Toast.show(mActivity, "找不到服务器");
+            ToastUtil.show(mActivity, "找不到服务器");
         } else if (exception instanceof URLError) {// URL是错的
-            Toast.show(mActivity, "URL是错的");
+            ToastUtil.show(mActivity, "URL是错的");
         } else if (exception instanceof NotFoundCacheError) {
             // 这个异常只会在仅仅查找缓存时没有找到缓存时返回
-            Toast.show(mActivity, "没有找到缓存");
+            ToastUtil.show(mActivity, "没有找到缓存");
         } else if (exception instanceof ProtocolException) {
-            Toast.show(mActivity, "系统不支持的请求方法。");
+            ToastUtil.show(mActivity, "系统不支持的请求方法。");
         } else if (exception instanceof ParseError) {
-            Toast.show(mActivity, "解析数据时发生错误");
+            ToastUtil.show(mActivity, "解析数据时发生错误");
         } else {
-            Toast.show(mActivity, "未知错误");
+            ToastUtil.show(mActivity, "未知错误");
         }
         Logger.e("错误：" + exception.getMessage());
         if (callback != null)
