@@ -37,11 +37,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        gson=new Gson();
+        gson = new Gson();
         mApplication = (MyApp) getApplication();
         mApplication.init(this); // 把 this 传过去，，这里主要是要 得到当前的或者是出错的activity的包名和类名
         // 其实这里也可以，把获取的数据，，传过去，，不用传对象；；；
         mApplication.addActivity(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mApplication.uname_token = getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", "");
     }
 
     public <T> void request(int what, Request<T> request, HttpListener<T> callback, boolean canCancel, boolean isLoading) {

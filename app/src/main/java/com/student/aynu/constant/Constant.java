@@ -11,7 +11,6 @@ public class Constant {
     public static int DELAY_TIME = 2000;
     //传值失败的提示
     public static String FALIURE_MESSAGE = "加载数据失败，请重新加载。。。";
-    //mob短信验证的相关常量
-    public static String MOB_APP_KEY = "1805fee1bb460";
-    public static String MOB_APP_SECRET = "e26165e66163d8456b59821d07b3a4b3";
+    //设置点击间隔
+    public static final int MIN_CLICK_DELAY_TIME = 1000;
 }

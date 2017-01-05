@@ -20,42 +20,102 @@
             android:text="新用户注册" />
     </android.support.v7.widget.Toolbar>
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="8dp" />
+        android:layout_height="150dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/register_head"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/register_select"
+            app:riv_border_color="#fff"
+            app:riv_border_width="1dp"
+            app:riv_oval="true" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="#fff">
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
 
         <View
             style="@style/ccc_1px"
             android:layout_alignParentTop="true" />
 
         <TextView
-            android:id="@+id/register_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:text="手机号"
-            android:textColor="#666"
-            android:textSize="14sp" />
+            style="@style/register_text"
+            android:text="用户名    " />
 
         <EditText
-            android:id="@+id/register_phone_edit"
-            android:layout_width="match_parent"
+            android:id="@+id/register_name"
+            style="@style/register_text_right"
+            android:hint="请输入用户名"
+            android:maxLength="11" />
+
+        <TextView
+            android:id="@+id/register_check"
+            android:layout_width="54dp"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/register_name_text"
-            android:background="@null"
-            android:hint="请输入手机号"
-            android:inputType="number"
-            android:maxLength="11"
-            android:textColorHint="#999"
+            android:gravity="center"
+            android:text="检测"
+            android:textColor="#222"
             android:textSize="14sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/register_check"
+            android:background="#e2e2e2" />
+
+        <View
+            style="@style/ccc_1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
+
+        <TextView
+            style="@style/register_text"
+            android:text="设置密码" />
+
+        <EditText
+            android:id="@+id/register_password"
+            style="@style/register_text_right"
+            android:hint="请输入登录密码"
+            android:inputType="textPassword" />
+
+        <View
+            style="@style/ccc_1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
+
+        <TextView
+            style="@style/register_text"
+            android:text="确认密码" />
+
+        <EditText
+            android:id="@+id/register_rePassword"
+            style="@style/register_text_right"
+            android:hint="请保证两次输入的密码相同"
+            android:inputType="textPassword" />
 
         <View
             style="@style/ccc_1px"
@@ -65,10 +125,19 @@
     <RelativeLayout
         android:id="@+id/register_phone_next"
         style="@style/bottom_relative"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             style="@style/bottom_text"
-            android:text="下一步" />
+            android:text="立即注册" />
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:layout_marginRight="@dimen/margin_right"
+        android:layout_weight="1"
+        android:src="@mipmap/register_bottom" />
+
 </LinearLayout>

@@ -33,7 +33,7 @@
             android:id="@+id/login_name"
             style="@style/login_text"
             android:layout_toRightOf="@id/login_img1"
-            android:hint="请输入您的账号(手机号)"
+            android:hint="请输入您的账号"
             android:textCursorDrawable="@null" />
 
         <View

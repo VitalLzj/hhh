@@ -18,6 +18,10 @@ public class IpUtil {
     public static String getInfoNews = Ip_head + "Info/showInfoNews?";
     //用户注册
     //检测当前账号是否可用
-    public static String checkUserIsExist = Ip_head + "User/checkIsRegister?";
+    public static String checkUserIsExist = Ip_head + "User/checkIsRegister";
+    //进行注册
+    public static String registerUser=Ip_head+"User/registerUser";
+    //进行登录
+    public static String loginUser=Ip_head+"User/login";
 
 }
