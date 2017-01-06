@@ -91,13 +91,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    FragmentManager fm;
-    FragmentTransaction fragmentTransaction;
-
     //点击事件处理
     public void setSelect(int select) {
-        fm = getSupportFragmentManager();
-        fragmentTransaction = fm.beginTransaction();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
         hideFragment(fragmentTransaction);
         switch (select) {
             case 1:
@@ -142,7 +139,22 @@ public class MainActivity extends BaseActivity {
                 break;
             case 5:
                 //进入个人中心前，检测token是否过期。
-                checkToken();
+                if (!checkIsLogin(MainActivity.this)) {
+                    //没有登录
+                    startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
+                    ToastUtil.showFaliureToast(MainActivity.this, "请重新登录");
+                } else {
+                    //没有过期
+                    if (mTab5 == null) {
+                        mTab5 = new MineFragment();
+                        fragmentTransaction.add(R.id.main_content, mTab5);
+                    } else {
+                        fragmentTransaction.show(mTab5);
+                    }
+                    mMineImage.setImageResource(R.mipmap.foot_5_hover);
+                    mMineText.setTextColor(Color.rgb(153, 0, 0));
+                }
+
                 break;
             default:
                 break;
@@ -150,42 +162,33 @@ public class MainActivity extends BaseActivity {
         fragmentTransaction.commit();
     }
 
-    /**
-     * 检测token是否过期
-     */
-    private void checkToken() {
-        StringRequest request = new StringRequest(IpUtil.checkToken, RequestMethod.POST);
-        request.set("userid", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("user_id", ""));
-        request.set("token", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", ""));
-        request(0, request, callback, false, false);
-    }
-
-    HttpListener<String> callback = new HttpListener<String>() {
-        @Override
-        public void onSucceed(int what, Response<String> response) {
-            String responseInfo = response.get();
-            Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
-            if (base.getCode() == 0) {
-                //没有过期
-                if (mTab5 == null) {
-                    mTab5 = new MineFragment();
-                    fragmentTransaction.add(R.id.main_content, mTab5);
-                } else {
-                    fragmentTransaction.show(mTab5);
-                }
-                mMineImage.setImageResource(R.mipmap.foot_5_hover);
-                mMineText.setTextColor(Color.rgb(153, 0, 0));
-            } else {
-                ToastUtil.showFaliureToast(MainActivity.this, "请重新登录");
-                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
-            }
-        }
-
-        @Override
-        public void onFailed(int what, Response<String> response) {
-
-        }
-    };
+//    /**
+//     * 检测token是否过期
+//     */
+//    private void checkToken() {
+//        StringRequest request = new StringRequest(IpUtil.checkToken, RequestMethod.POST);
+//        request.set("userid", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("user_id", ""));
+//        request.set("token", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", ""));
+//        request(0, request, callback, false, false);
+//    }
+//
+//    HttpListener<String> callback = new HttpListener<String>() {
+//        @Override
+//        public void onSucceed(int what, Response<String> response) {
+//            String responseInfo = response.get();
+//            Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
+//            if (base.getCode() == 0) {
+//
+//            } else {
+//
+//            }
+//        }
+//
+//        @Override
+//        public void onFailed(int what, Response<String> response) {
+//
+//        }
+//    };
 
     private void hideFragment(FragmentTransaction fragmentTransaction) {
         if (mTab1 != null) {

@@ -15,10 +15,12 @@
  */
 package com.student.aynu.base;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.student.aynu.application.MyApp;
@@ -53,6 +55,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     public <T> void request(int what, Request<T> request, HttpListener<T> callback, boolean canCancel, boolean isLoading) {
         request.setCancelSign(this);
         CallServer.getRequestInstance().add(this, what, request, callback, canCancel, isLoading);
+    }
+
+    //检测用户是否登录
+    public boolean checkIsLogin(Context context) {
+        String token = context.getSharedPreferences("TOKEN", 0).getString("token", null);
+        if (token == null) {
+            return false;
+        } else {
+            mApplication.uname_token = token;
+            return true;
+        }
     }
 
     @Override
