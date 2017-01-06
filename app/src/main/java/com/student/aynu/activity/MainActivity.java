@@ -15,11 +15,19 @@ import android.widget.Toast;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
+import com.student.aynu.entity.Base_entity;
 import com.student.aynu.fragment.FindFragment;
 import com.student.aynu.fragment.ForumFragment;
 import com.student.aynu.fragment.HomeFragment;
 import com.student.aynu.fragment.InfoFragment;
 import com.student.aynu.fragment.MineFragment;
+import com.student.aynu.nohttp.HttpListener;
+import com.student.aynu.util.IpUtil;
+import com.student.aynu.util.Sha1Util;
+import com.student.aynu.util.ToastUtil;
+import com.yolanda.nohttp.RequestMethod;
+import com.yolanda.nohttp.rest.Response;
+import com.yolanda.nohttp.rest.StringRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +58,8 @@ public class MainActivity extends BaseActivity {
     ImageView mInfoImage;
     @BindView(R.id.footer_5_image)
     ImageView mMineImage;
+    //常量
+    private static int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +91,13 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
+
     //点击事件处理
     public void setSelect(int select) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fm = getSupportFragmentManager();
+        fragmentTransaction = fm.beginTransaction();
         hideFragment(fragmentTransaction);
         switch (select) {
             case 1:
@@ -96,7 +109,6 @@ public class MainActivity extends BaseActivity {
                 }
                 mHomeImage.setImageResource(R.mipmap.foot_1_hover);
                 mHomeText.setTextColor(Color.rgb(153, 0, 0));
-
                 break;
             case 2:
                 if (mTab2 == null) {
@@ -129,21 +141,51 @@ public class MainActivity extends BaseActivity {
                 mInfoText.setTextColor(Color.rgb(153, 0, 0));
                 break;
             case 5:
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//                if (mTab5 == null) {
-//                    mTab5 = new MineFragment();
-//                    fragmentTransaction.add(R.id.main_content, mTab5);
-//                } else {
-//                    fragmentTransaction.show(mTab5);
-//                }
-                mMineImage.setImageResource(R.mipmap.foot_5_hover);
-                mMineText.setTextColor(Color.rgb(153, 0, 0));
+                //进入个人中心前，检测token是否过期。
+                checkToken();
                 break;
             default:
                 break;
         }
         fragmentTransaction.commit();
     }
+
+    /**
+     * 检测token是否过期
+     */
+    private void checkToken() {
+        StringRequest request = new StringRequest(IpUtil.checkToken, RequestMethod.POST);
+        request.set("userid", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("user_id", ""));
+        request.set("token", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", ""));
+        request(0, request, callback, false, false);
+    }
+
+    HttpListener<String> callback = new HttpListener<String>() {
+        @Override
+        public void onSucceed(int what, Response<String> response) {
+            String responseInfo = response.get();
+            Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
+            if (base.getCode() == 0) {
+                //没有过期
+                if (mTab5 == null) {
+                    mTab5 = new MineFragment();
+                    fragmentTransaction.add(R.id.main_content, mTab5);
+                } else {
+                    fragmentTransaction.show(mTab5);
+                }
+                mMineImage.setImageResource(R.mipmap.foot_5_hover);
+                mMineText.setTextColor(Color.rgb(153, 0, 0));
+            } else {
+                ToastUtil.showFaliureToast(MainActivity.this, "请重新登录");
+                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
+            }
+        }
+
+        @Override
+        public void onFailed(int what, Response<String> response) {
+
+        }
+    };
 
     private void hideFragment(FragmentTransaction fragmentTransaction) {
         if (mTab1 != null) {
@@ -192,5 +234,17 @@ public class MainActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == 0) {
+                //登陆成功
+                int select = data.getIntExtra("select", 1);
+                setSelect(select);
+            }
+        }
     }
 }

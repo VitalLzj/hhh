@@ -26,6 +26,7 @@ import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.Bitmaputils;
 import com.student.aynu.util.GlideLoader;
 import com.student.aynu.util.IpUtil;
+import com.student.aynu.util.Sha1Util;
 import com.student.aynu.util.ToastUtil;
 import com.yancy.imageselector.ImageConfig;
 import com.yancy.imageselector.ImageSelector;
@@ -149,7 +150,7 @@ public class Register1Activity extends BaseActivity {
         String is_head = "0";
         StringRequest request = new StringRequest(IpUtil.registerUser, RequestMethod.POST);
         request.set("uName", mUserName_Edit.getText().toString());
-        request.set("pwd", mUserPwd_Edit.getText().toString());
+        request.set("pwd", Sha1Util.encode(mUserPwd_Edit.getText().toString()));
         if (!image_url.equals("")) {
             File file = new File(image_url);
             //新文件的文件名

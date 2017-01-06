@@ -23,5 +23,7 @@ public class IpUtil {
     public static String registerUser=Ip_head+"User/registerUser";
     //进行登录
     public static String loginUser=Ip_head+"User/login";
+    //检测token是否过期
+    public static String checkToken=Ip_head+"User/checkToken";
 
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.student.aynu.constant.Constant;
 import com.student.aynu.entity.Base_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
+import com.student.aynu.util.Sha1Util;
 import com.student.aynu.util.ToastUtil;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Response;
@@ -79,7 +81,7 @@ public class LoginActivity extends BaseActivity {
     private void doLogin() {
         StringRequest request = new StringRequest(IpUtil.loginUser, RequestMethod.POST);
         request.set("uName", mUnameEdit.getText().toString());
-        request.set("uPwd", mUpwdEdit.getText().toString());
+        request.set("uPwd", Sha1Util.encode(mUpwdEdit.getText().toString()));
         request(0, request, callback, false, true);
     }
 
@@ -92,9 +94,16 @@ public class LoginActivity extends BaseActivity {
                 //登录成功会返回token
                 //将token保存到本地
                 getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", base_entity.getData()).commit();
+                //将用户的id保存到sp中-----用于检测token是否过期
+                String user_Id = base_entity.getData().split("@")[0];
+                getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_id", user_Id).commit();
                 //跳转到首页
-                startActivity(new Intent(mContext,MainActivity.class));
+                Intent intent = new Intent();
+                intent.putExtra("select", 5);
+                setResult(0, intent);
                 finish();
+            } else {
+                ToastUtil.showFaliureToast(mContext, base_entity.getMessage());
             }
         }
 
@@ -104,4 +113,20 @@ public class LoginActivity extends BaseActivity {
         }
     };
 
+    /**
+     * @param keyCode
+     * @param event
+     * @return 如果按了返回键。跳回首页
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Intent intent = new Intent();
+            intent.putExtra("select", 1);
+            setResult(0, intent);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
