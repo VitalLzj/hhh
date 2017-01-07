@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
@@ -52,7 +50,7 @@ public class LoginActivity extends BaseActivity {
     //上次点击时间
     private long lastClickTime = 0;
 
-    @OnClick({R.id.login_regist, R.id.login_login})
+    @OnClick({R.id.login_regist, R.id.login_login, R.id.login_miss})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_regist:
@@ -74,6 +72,8 @@ public class LoginActivity extends BaseActivity {
                         doLogin();
                     }
                 }
+                break;
+            case R.id.login_miss:
                 break;
         }
     }

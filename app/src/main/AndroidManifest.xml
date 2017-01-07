@@ -29,10 +29,12 @@
         //设置状态栏透明 必须设置label 否则有actionbar
         <activity
             android:name=".activity.LoginActivity"
-            android:label="zzz"
+            android:label="登录"
             android:launchMode="singleTop"
             android:theme="@style/ImageTranslucentTheme" />
-        <activity android:name=".activity.Register1Activity" />
+        <activity
+            android:name=".activity.Register1Activity"
+            android:launchMode="singleTask" />
 
     </application>
 

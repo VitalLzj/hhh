@@ -1,12 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
 
-    <TextView
-        android:text="我的"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mine_swipeRefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.Toolbar
+                    style="@style/app_toolbar"
+                    app:contentInsetStart="0dp"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <TextView
+                        style="@style/page_title"
+                        android:text="个人中心" />
+                </android.support.v7.widget.Toolbar>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/mine_head"
+                            android:layout_width="68dp"
+                            android:layout_height="68dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/ic_launcher"
+                            app:riv_border_color="#FFF"
+                            app:riv_border_width="1dp"
+                            app:riv_oval="true" />
+
+                        <TextView
+                            android:id="@+id/mine_head_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mine_head"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2dp"
+                            android:textColor="#fff"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View style="@style/ccc_1px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <View style="@style/ccc_1px" />
+
+                <LinearLayout
+                    style="@style/mine_order_linear_fff"
+                    android:layout_height="85dp">
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout1"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_7" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="我的信息" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout2"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_12" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="青果查询" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout3"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:id="@+id/mine_score_img"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_2" />
+
+                        <TextView
+                            android:id="@+id/mine_score_text"
+                            style="@style/mine_order_linear_text"
+                            android:text="图书查询" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/e2e2e2_1px" />
+
+                <LinearLayout
+                    style="@style/mine_order_linear_fff"
+                    android:layout_height="85dp">
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout4"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_5" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="我的帖子" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout5"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_6" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="我的回复" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout6"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_8" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="校园风采 " />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/e2e2e2_1px" />
+
+                <LinearLayout
+                    style="@style/mine_order_linear_fff"
+                    android:layout_height="85dp">
+
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout7"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_9" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="意见反馈" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout8"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_10" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="帮助中心" />
+                    </LinearLayout>
+
+                    <View style="@style/e2e2e2_high" />
+
+                    <LinearLayout
+                        android:id="@+id/mine_layout9"
+                        style="@style/mine_order_linear">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/my_index_11" />
+
+                        <TextView
+                            style="@style/mine_order_linear_text"
+                            android:text="关于我们" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View style="@style/ccc_1px" />
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

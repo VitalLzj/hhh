@@ -1,18 +1,30 @@
 package com.student.aynu.activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +52,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,6 +88,14 @@ public class Register1Activity extends BaseActivity {
     TextView mCheck_Text;
     //标记位，该账号是否可以注册
     private boolean isRegister = false;
+    //密保pop
+    private PopupWindow mPop;
+    //密保的三个问题
+    EditText mSecurityEdit1;
+    EditText mSecurityEdit2;
+    EditText mSecurityEdit3;
+    //注册成功后用户的id
+    private String mUser_Id = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,6 +166,48 @@ public class Register1Activity extends BaseActivity {
         }
     }
 
+    /**
+     * 设置密保
+     */
+    private void setSecurity() {
+        StringRequest request = new StringRequest(IpUtil.setSecurity, RequestMethod.POST);
+        request.set("uId", mUser_Id);
+        request.set("uSecurity1", mSecurityEdit1.getText().toString());
+        request.set("uSecurity2", mSecurityEdit2.getText().toString());
+        request.set("uSecurity3", mSecurityEdit3.getText().toString());
+        request(2, request, callback, false, true);
+    }
+
+    /**
+     * 提示对话框
+     */
+    private void showWarningDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("设置密保问题方便您找回密码，请慎重")
+                .setCancelable(false)
+                .setNegativeButton("我要设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+
+                    }
+                }).setPositiveButton("我要离开", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                if (mPop != null && mPop.isShowing()) {
+                    mPop.dismiss();
+                }
+                //注册成功，跳转到登录界面，但未设置密保
+                startActivity(new Intent(mContext, LoginActivity.class));
+                finish();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
     //进行注册
     private void doRegister() {
         //是否上传了头像,0代表没有
@@ -195,17 +259,30 @@ public class Register1Activity extends BaseActivity {
                     }
                     break;
                 case 1:
-                    Base_entity is_Succees = gson.fromJson(responseInfo, Base_entity.class);
-                    if (is_Succees.getCode() == 0) {
-                        //注册成功，跳转到登录界面
-                        startActivity(new Intent(mContext, LoginActivity.class));
-                        finish();
+                    Base_entity is_Success = gson.fromJson(responseInfo, Base_entity.class);
+                    if (is_Success.getCode() == 0) {
+                        mUser_Id = is_Success.getData();
+                        //注册成功，设置密保
+                        showPop();
                     } else {
                         isRegister = false;
                         mUserName_Edit.setText("");
                         mUserPwd_Edit.setText("");
                         mUserRpwd_Edit.setText("");
-                        ToastUtil.showFaliureToast(mContext, is_Succees.getMessage());
+                        ToastUtil.showFaliureToast(mContext, is_Success.getMessage());
+                    }
+                    break;
+                case 2:
+                    Base_entity is_Succeed = gson.fromJson(responseInfo, Base_entity.class);
+                    if (is_Succeed.getCode() == 0) {
+                        //密保设置成功，跳转登录界面
+                        startActivity(new Intent(mContext, LoginActivity.class));
+                        finish();
+                    } else {
+                        mSecurityEdit1.setText("");
+                        mSecurityEdit2.setText("");
+                        mSecurityEdit3.setText("");
+                        ToastUtil.showFaliureToast(mContext, is_Succeed.getMessage());
                     }
                     break;
             }
@@ -218,6 +295,101 @@ public class Register1Activity extends BaseActivity {
         }
     };
 
+    /**
+     * 弹出密保提示
+     */
+    private void showPop() {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.activity_security, null);
+        mPop = new PopupWindow(v, LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        mPop.setContentView(v);
+
+        mSecurityEdit1 = (EditText) v.findViewById(R.id.register_security1);
+        mSecurityEdit2 = (EditText) v.findViewById(R.id.register_security2);
+        mSecurityEdit3 = (EditText) v.findViewById(R.id.register_security3);
+
+        v.findViewById(R.id.register_security_quite).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showWarningDialog();
+            }
+        });
+        v.findViewById(R.id.register_security_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(mSecurityEdit1.getText().toString())) {
+                    ToastUtil.showText(mContext, "请输入您的QQ号码");
+                    return;
+                } else if (TextUtils.isEmpty(mSecurityEdit2.getText().toString())) {
+                    ToastUtil.showText(mContext, "请输入您的邮箱地址");
+                    return;
+                } else if (TextUtils.isEmpty(mSecurityEdit3.getText().toString())) {
+                    ToastUtil.showText(mContext, "请输入您的电话号码");
+                    return;
+                } else if (!isEmail(mSecurityEdit2.getText().toString())) {
+                    ToastUtil.showText(mContext, "请输入正确的邮箱格式");
+                    return;
+                } else if (!isphoneNumber(mSecurityEdit3.getText().toString())) {
+                    ToastUtil.showText(mContext, "请输入正确的电话格式");
+                    return;
+                } else {
+                    setSecurity();
+                }
+            }
+        });
+        //主布局
+        View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_regist_phone, null);
+        // 点击外部消失
+        mPop.setBackgroundDrawable(new BitmapDrawable());
+        mPop.setOutsideTouchable(true);
+        //动画加显示
+        //淡入淡出
+        mPop.setAnimationStyle(R.style.animation);
+        mPop.showAtLocation(mainView, Gravity.CENTER, 0, 0);
+        //实例化一个ColorDrawable颜色为半透明
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        //设置PopupWindow弹出窗体的背景
+        mPop.setBackgroundDrawable(dw);
+        backgroundAlpha((Activity) mContext, 0.5f);//0.0-1.0
+        mPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                backgroundAlpha((Activity) mContext, 1f);
+            }
+        });
+    }
+
+    /**
+     * 设置添加屏幕的背景透明度
+     */
+    public void backgroundAlpha(Activity context, float bgAlpha) {
+        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
+        lp.alpha = bgAlpha;
+        context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        context.getWindow().setAttributes(lp);
+    }
+
+    /**
+     * @param email
+     * @return 邮箱地址的正则
+     */
+    public boolean isEmail(String email) {
+        String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        Pattern p = Pattern.compile(str);
+        Matcher m = p.matcher(email);
+        return m.find();
+    }
+
+    /**
+     * @param phonenumber
+     * @return 电话号码的正则
+     */
+    public boolean isphoneNumber(String phonenumber) {
+        String regex = ("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(phonenumber);
+        return m.find();
+    }
 
     /**
      * 图片选择
