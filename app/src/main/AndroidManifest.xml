@@ -36,6 +36,7 @@
             android:name=".activity.Register1Activity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.UserInfoActivity"/>
+        <activity android:name=".activity.UpdateUserName"/>
 
     </application>
 

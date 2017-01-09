@@ -31,5 +31,9 @@ public class IpUtil {
     public static String getUser_info = Ip_head + "User/getUserInfo";
     //修改用户头像
     public static String updateUser_Head = Ip_head + "User/changeUserHead";
+    //修改用户名
+    public static String updateUser_Name = Ip_head + "User/updateUserName";
+    //修改性别
+    public static String updateUser_Sex = Ip_head + "User/updateUserSex";
 
 }

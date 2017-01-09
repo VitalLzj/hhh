@@ -10,7 +10,8 @@ public class Constant {
     //刷新加载延迟时间
     public static int DELAY_TIME = 2000;
     //传值失败的提示
-    public static String FALIURE_MESSAGE = "加载数据失败，请重新加载。。。";
+
+    public static String FAILURE_MESSAGE = "加载数据失败，请重新加载。。。";
     //设置点击间隔
     public static final int MIN_CLICK_DELAY_TIME = 1000;
 }

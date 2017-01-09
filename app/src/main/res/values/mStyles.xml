@@ -257,4 +257,12 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:src">@mipmap/jiantou</item>
     </style>
+
+    <style name="update_sex" parent="android:Theme.Light">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>
