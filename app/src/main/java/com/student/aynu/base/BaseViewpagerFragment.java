@@ -28,6 +28,8 @@ public abstract class BaseViewpagerFragment extends BaseFragment {
 
     //新闻类型
     public String mNews_Type;
+    //新闻索引
+    public String mNav;
 
     @Nullable
     @Override
@@ -36,6 +38,7 @@ public abstract class BaseViewpagerFragment extends BaseFragment {
         Bundle arguments = getArguments();
         if (arguments != null) {
             mNews_Type = arguments.getString("TYPE");
+            mNav=arguments.getString("NAV");
         }
 
         if (convertView == null) {

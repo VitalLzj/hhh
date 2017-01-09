@@ -91,14 +91,14 @@ public class HomeFragment extends BaseFragment {
                 case 1:
                     mIndicator.setTabItemTitles(mTitles);
                     //title的数量占时固定
-                    HomeTitle1Fragment fragment1 = HomeTitle1Fragment.newInstance(mTitles.get(0));
-                    HomeTitle2Fragment fragment2 = HomeTitle2Fragment.newInstance(mTitles.get(1));
-                    HomeTitle3Fragment fragment3 = HomeTitle3Fragment.newInstance(mTitles.get(2));
-                    HomeTitle4Fragment fragment4 = HomeTitle4Fragment.newInstance(mTitles.get(3));
-                    HomeTitle5Fragment fragment5 = HomeTitle5Fragment.newInstance(mTitles.get(4));
-                    HomeTitle6Fragment fragment6 = HomeTitle6Fragment.newInstance(mTitles.get(5));
-                    HomeTitle7Fragment fragment7 = HomeTitle7Fragment.newInstance(mTitles.get(6));
-                    HomeTitle8Fragment fragment8 = HomeTitle8Fragment.newInstance(mTitles.get(7));
+                    HomeTitle1Fragment fragment1 = HomeTitle1Fragment.newInstance(mTitles.get(0),"1");
+                    HomeTitle1Fragment fragment2 = HomeTitle1Fragment.newInstance(mTitles.get(1),"2");
+                    HomeTitle1Fragment fragment3 = HomeTitle1Fragment.newInstance(mTitles.get(2),"3");
+                    HomeTitle1Fragment fragment4 = HomeTitle1Fragment.newInstance(mTitles.get(3),"4");
+                    HomeTitle1Fragment fragment5 = HomeTitle1Fragment.newInstance(mTitles.get(4),"5");
+                    HomeTitle1Fragment fragment6 = HomeTitle1Fragment.newInstance(mTitles.get(5),"6");
+                    HomeTitle1Fragment fragment7 = HomeTitle1Fragment.newInstance(mTitles.get(6),"7");
+                    HomeTitle1Fragment fragment8 = HomeTitle1Fragment.newInstance(mTitles.get(7),"8");
 
                     mTabContents.add(fragment1);
                     mTabContents.add(fragment2);

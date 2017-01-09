@@ -49,15 +49,16 @@ public class HomeTitle1Fragment extends BaseViewpagerFragment {
 
     ImageView mErrorImg;
 
-    public static HomeTitle1Fragment newInstance(String type) {
-        
+    public static HomeTitle1Fragment newInstance(String type, String nav) {
+
         Bundle args = new Bundle();
-        args.putString("TYPE",type);
+        args.putString("TYPE", type);
+        args.putString("NAV", nav);
         HomeTitle1Fragment fragment = new HomeTitle1Fragment();
         fragment.setArguments(args);
         return fragment;
     }
-    
+
 
     @Override
     protected int getLayoutId() {
@@ -118,20 +119,20 @@ public class HomeTitle1Fragment extends BaseViewpagerFragment {
 
     //加载更多的请求
     private void requestLoadData(int now_page) {
-        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav=1&page=" + now_page, Home_News.class);
+        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav="+mNav+"&page=" + now_page, Home_News.class);
         request(2, request, callback, false, false);
     }
 
     //刷新数据
     private void requestData() {
-        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav=1&page=" + 1, Home_News.class);
+        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav="+mNav+"&page=" + 1, Home_News.class);
         request(1, request, callback, false, false);
     }
 
     @Override
     protected void initData() {
         //获取数据
-        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav=1&page=" + 1, Home_News.class);
+        JavaBeanRequest<Home_News> request = new JavaBeanRequest<>(IpUtil.getHomeNews + "nav="+mNav+"&page="+ 1, Home_News.class);
         request(0, request, callback, false, true);
     }
 
