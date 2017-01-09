@@ -20,12 +20,16 @@ public class IpUtil {
     //检测当前账号是否可用
     public static String checkUserIsExist = Ip_head + "User/checkIsRegister";
     //进行注册
-    public static String registerUser=Ip_head+"User/registerUser";
+    public static String registerUser = Ip_head + "User/registerUser";
     //进行登录
-    public static String loginUser=Ip_head+"User/login";
+    public static String loginUser = Ip_head + "User/login";
     //检测token是否过期
-    public static String checkToken=Ip_head+"User/checkToken";
+    public static String checkToken = Ip_head + "User/checkToken";
     //设置密保
-    public static String setSecurity=Ip_head+"User/setSecurity";
+    public static String setSecurity = Ip_head + "User/setSecurity";
+    //获取用户信息
+    public static String getUser_info = Ip_head + "User/getUserInfo";
+    //修改用户头像
+    public static String updateUser_Head = Ip_head + "User/changeUserHead";
 
 }

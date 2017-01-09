@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.student.aynu.application.MyApp;
 import com.student.aynu.nohttp.CallServer;
 import com.student.aynu.nohttp.HttpListener;
 import com.yolanda.nohttp.rest.Request;
@@ -19,13 +20,15 @@ import butterknife.ButterKnife;
 
 public class BaseFragment extends Fragment {
 
-
+    public MyApp mApplication;
     public Gson gson;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         gson = new Gson();
+        mApplication = (MyApp) getActivity().getApplication();
+        mApplication.uname_token = getActivity().getSharedPreferences("TOKEN", 0).getString("token", "");
     }
 
     @Nullable

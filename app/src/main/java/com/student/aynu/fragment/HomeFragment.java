@@ -90,24 +90,12 @@ public class HomeFragment extends BaseFragment {
                 //获取title成功
                 case 1:
                     mIndicator.setTabItemTitles(mTitles);
-                    //title的数量占时固定
-                    HomeTitle1Fragment fragment1 = HomeTitle1Fragment.newInstance(mTitles.get(0),"1");
-                    HomeTitle1Fragment fragment2 = HomeTitle1Fragment.newInstance(mTitles.get(1),"2");
-                    HomeTitle1Fragment fragment3 = HomeTitle1Fragment.newInstance(mTitles.get(2),"3");
-                    HomeTitle1Fragment fragment4 = HomeTitle1Fragment.newInstance(mTitles.get(3),"4");
-                    HomeTitle1Fragment fragment5 = HomeTitle1Fragment.newInstance(mTitles.get(4),"5");
-                    HomeTitle1Fragment fragment6 = HomeTitle1Fragment.newInstance(mTitles.get(5),"6");
-                    HomeTitle1Fragment fragment7 = HomeTitle1Fragment.newInstance(mTitles.get(6),"7");
-                    HomeTitle1Fragment fragment8 = HomeTitle1Fragment.newInstance(mTitles.get(7),"8");
-
-                    mTabContents.add(fragment1);
-                    mTabContents.add(fragment2);
-                    mTabContents.add(fragment3);
-                    mTabContents.add(fragment4);
-                    mTabContents.add(fragment5);
-                    mTabContents.add(fragment6);
-                    mTabContents.add(fragment7);
-                    mTabContents.add(fragment8);
+                    //title的数量可以不固定
+                    for (int i = 0; i < mTitles.size(); i++) {
+                        int j=i+1;
+                        HomeTitle1Fragment fragment1 = HomeTitle1Fragment.newInstance(mTitles.get(i),j+"");
+                        mTabContents.add(fragment1);
+                    }
 
                     mAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
                         @Override

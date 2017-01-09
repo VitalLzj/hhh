@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/mine_swipeRefreshlayout"
+        android:id="@+id/mine_swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -59,9 +59,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/mine_head"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#fff"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 

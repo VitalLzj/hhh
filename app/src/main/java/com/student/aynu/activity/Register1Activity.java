@@ -339,8 +339,8 @@ public class Register1Activity extends BaseActivity {
         //主布局
         View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_regist_phone, null);
         // 点击外部消失
-        mPop.setBackgroundDrawable(new BitmapDrawable());
-        mPop.setOutsideTouchable(true);
+//        mPop.setBackgroundDrawable(new BitmapDrawable());
+//        mPop.setOutsideTouchable(true);
         //动画加显示
         //淡入淡出
         mPop.setAnimationStyle(R.style.animation);

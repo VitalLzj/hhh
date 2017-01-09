@@ -12,7 +12,7 @@ import android.widget.EditText;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Base_entity;
+import com.student.aynu.entity.Login_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.Sha1Util;
@@ -89,13 +89,13 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onSucceed(int what, Response<String> response) {
             String responseInfo = response.get();
-            Base_entity base_entity = gson.fromJson(responseInfo, Base_entity.class);
-            if (base_entity.getCode() == 0) {
+            Login_entity login_entity = gson.fromJson(responseInfo, Login_entity.class);
+            if (login_entity.getCode() == 0) {
                 //登录成功会返回token
                 //将token保存到本地
-                getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", base_entity.getData()).commit();
+                getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", login_entity.getData().getUtoken()).commit();
                 //将用户的id保存到sp中-----用于检测token是否过期
-                String user_Id = base_entity.getData().split("@")[0];
+                String user_Id = login_entity.getData().getUid();
                 getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_id", user_Id).commit();
                 //跳转到首页
                 Intent intent = new Intent();
@@ -103,7 +103,7 @@ public class LoginActivity extends BaseActivity {
                 setResult(0, intent);
                 finish();
             } else {
-                ToastUtil.showFaliureToast(mContext, base_entity.getMessage());
+                ToastUtil.showFaliureToast(mContext, login_entity.getMessage());
             }
         }
 
