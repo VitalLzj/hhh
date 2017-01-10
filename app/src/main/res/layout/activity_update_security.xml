@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/security_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/update_security_toolbar_left"
+            style="@style/back_img" />
+
+        <TextView
+            style="@style/page_title"
+            android:text="修改密保" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
+
+        <TextView
+            style="@style/register_text"
+            android:text="密保1" />
+
+        <EditText
+            android:id="@+id/update_security1"
+            style="@style/register_text_right"
+            android:hint="请输入您的QQ号码"
+            android:inputType="number" />
+
+        <View
+            style="@style/ccc_1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
+
+        <TextView
+            style="@style/register_text"
+            android:text="密保2" />
+
+        <EditText
+            android:id="@+id/update_security2"
+            style="@style/register_text_right"
+            android:hint="请输入您的邮箱地址" />
+
+        <View
+            style="@style/ccc_1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_margin="@dimen/margin_left"
+        android:background="@drawable/register_item_bg">
+
+        <TextView
+            style="@style/register_text"
+            android:text="密保3" />
+
+        <EditText
+            android:id="@+id/update_security3"
+            style="@style/register_text_right"
+            android:hint="请输入您的电话号码"
+            android:inputType="number" />
+
+        <View
+            style="@style/ccc_1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/update_security_sure"
+        style="@style/bottom_relative">
+
+        <TextView
+            style="@style/bottom_text"
+            android:text="确认" />
+    </RelativeLayout>
+</LinearLayout>

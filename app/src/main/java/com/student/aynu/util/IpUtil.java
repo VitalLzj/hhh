@@ -35,5 +35,17 @@ public class IpUtil {
     public static String updateUser_Name = Ip_head + "User/updateUserName";
     //修改性别
     public static String updateUser_Sex = Ip_head + "User/updateUserSex";
+    //检测原密码
+    public static String checkUser_Pwd = Ip_head + "User/checkUserPwd";
+    //更改密码
+    public static String updateUser_Pwd = Ip_head + "User/updateUserPwd";
+    //获取当前密保
+    public static String getUser_Security = Ip_head + "User/getUserSecurity";
+    //设置新的密保
+    public static String setNew_Security = Ip_head + "User/setNewSecurity";
+    //密保验证
+    public static String checkUser_Security = Ip_head + "User/checkSecurity";
+    //设置新密码
+    public static String setNew_Pwd = Ip_head + "User/setNewPwd";
 
 }

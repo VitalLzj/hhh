@@ -2,6 +2,7 @@ package com.student.aynu.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -9,11 +10,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -24,12 +29,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
+import com.student.aynu.constant.Constant;
 import com.student.aynu.entity.Base_entity;
 import com.student.aynu.entity.User_Info;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.Bitmaputils;
 import com.student.aynu.util.GlideLoader;
 import com.student.aynu.util.IpUtil;
+import com.student.aynu.util.Sha1Util;
 import com.student.aynu.util.ToastUtil;
 import com.yancy.imageselector.ImageConfig;
 import com.yancy.imageselector.ImageSelector;
@@ -41,6 +48,7 @@ import com.yolanda.nohttp.rest.StringRequest;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -76,6 +84,12 @@ public class UserInfoActivity extends BaseActivity {
     private PopupWindow mPopupWindow;
     //当前选中的性别
     private String mSex = null;
+    //修改密码的pop
+    private PopupWindow mPwdPop;
+    //标识位，是更改密码还是更改密保
+    private int flag = 0;
+    //设置密保的code
+    private static final int UPDATE_SECURITY = 2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -160,6 +174,27 @@ public class UserInfoActivity extends BaseActivity {
                         startActivity(new Intent(mContext, LoginActivity.class));
                     }
                     break;
+                case 3:
+                    Base_entity base3 = gson.fromJson(responseInfo, Base_entity.class);
+                    if (base3.getCode() == 0) {
+                        //验证成功
+                        if (mPwdPop != null && mPwdPop.isShowing()) {
+                            mPwdPop.dismiss();
+                        }
+                        //跳转修改密码
+                        if (flag == 2) {
+                            startActivity(new Intent(mContext, UpdateUserPwdActivity.class));
+                        } else if (flag == 1) {
+                            startActivityForResult(new Intent(mContext, UpdateUserSecurityActivity.class), UPDATE_SECURITY);
+                        }
+                    } else if (base3.getCode() == 1) {
+                        ToastUtil.showFaliureToast(mContext, "请检查密码");
+                    } else {
+                        //登录过期了，重新登录
+                        ToastUtil.showFaliureToast(mContext, "请重新登录");
+                        startActivity(new Intent(mContext, LoginActivity.class));
+                    }
+                    break;
             }
         }
 
@@ -169,8 +204,11 @@ public class UserInfoActivity extends BaseActivity {
 
         }
     };
+    //上次点击时间
+    private long lastClickTime = 0;
 
-    @OnClick({R.id.info_relay1, R.id.info_relay2, R.id.info_relay3, R.id.info_relay4, R.id.info_relay5, R.id.info_toolbar_left})
+    @OnClick({R.id.info_relay1, R.id.info_relay2, R.id.info_relay3,
+            R.id.info_relay4, R.id.info_relay5, R.id.info_toolbar_left, R.id.info_relay6})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.info_toolbar_left:
@@ -182,7 +220,7 @@ public class UserInfoActivity extends BaseActivity {
                 break;
             case R.id.info_relay2:
                 //修改用户名
-                Intent intent = new Intent(mContext, UpdateUserName.class);
+                Intent intent = new Intent(mContext, UpdateUserNameActivity.class);
                 intent.putExtra("userName", mUser_Name.getText().toString());
                 startActivityForResult(intent, UPDATE_NAME);
                 break;
@@ -190,10 +228,110 @@ public class UserInfoActivity extends BaseActivity {
                 showPopupWindow();
                 break;
             case R.id.info_relay4:
+                flag = 1;
+                showPwdPop();
                 break;
             case R.id.info_relay5:
+                flag = 2;
+                showPwdPop();
+                break;
+            case R.id.info_relay6:
+                showQuiteDialog();
                 break;
         }
+    }
+
+    /**
+     * 退出当前账号
+     */
+    private void showQuiteDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("您确定要退出当前账号么")
+                .setCancelable(false)
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //清空sp
+                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", null).commit();
+                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_id", "").commit();
+                        Intent intent = new Intent(mContext, LoginActivity.class);
+                        intent.putExtra("flag", 4);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        builder.show();
+    }
+
+    /**
+     * 修改密码，输入原密码
+     */
+    private void showPwdPop() {
+
+        View v = LayoutInflater.from(mContext).inflate(R.layout.activity_password, null);
+        mPwdPop = new PopupWindow(v, LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        mPwdPop.setContentView(v);
+
+        final EditText mPwdEdit = (EditText) v.findViewById(R.id.user_password);
+
+        v.findViewById(R.id.user_password_quite).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mPwdPop != null && mPwdPop.isShowing()) {
+                    mPwdPop.dismiss();
+                }
+            }
+        });
+        v.findViewById(R.id.user_password_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //本次点击时间
+                long currentTime = Calendar.getInstance().getTimeInMillis();
+                if (currentTime - lastClickTime > Constant.MIN_CLICK_DELAY_TIME) {
+                    lastClickTime = currentTime;
+                    if (TextUtils.isEmpty(mPwdEdit.getText().toString())) {
+                        ToastUtil.showText(mContext, "请输入当前密码");
+                        return;
+                    } else {
+                        checkPwd(mPwdEdit.getText().toString());
+                    }
+                }
+            }
+        });
+        //主布局
+        View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_user_info, null);
+        // 点击外部消失
+        mPwdPop.setBackgroundDrawable(new BitmapDrawable());
+        mPwdPop.setOutsideTouchable(true);
+        //动画加显示
+        //淡入淡出
+        mPwdPop.setAnimationStyle(R.style.animation);
+        mPwdPop.showAtLocation(mainView, Gravity.CENTER, 0, 0);
+        //实例化一个ColorDrawable颜色为半透明
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        //设置PopupWindow弹出窗体的背景
+        mPwdPop.setBackgroundDrawable(dw);
+        backgroundAlpha((Activity) mContext, 0.5f);//0.0-1.0
+        mPwdPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                backgroundAlpha((Activity) mContext, 1f);
+            }
+        });
+    }
+
+    /**
+     * 检测当前密码是否正确
+     *
+     * @param s
+     */
+    private void checkPwd(String s) {
+        StringRequest request = new StringRequest(IpUtil.checkUser_Pwd, RequestMethod.POST);
+        request.set("userPwd", Sha1Util.encode(s));
+        request.set("token", mApplication.uname_token);
+        request(3, request, callback, false, true);
     }
 
     /**
@@ -257,6 +395,11 @@ public class UserInfoActivity extends BaseActivity {
         } else if (requestCode == UPDATE_NAME && resultCode == RESULT_OK && data != null) {
             String new_Name = data.getStringExtra("new_Name");
             mUser_Name.setText(new_Name);
+        } else if (requestCode == UPDATE_SECURITY && resultCode == RESULT_OK && data != null) {
+            String is_Success = data.getStringExtra("result");
+            if (!is_Success.equals("")) {
+                mUser_Mb.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -278,7 +421,7 @@ public class UserInfoActivity extends BaseActivity {
                 .findViewById(R.id.pop_sex_man);
         RelativeLayout mDeleteLayout = (RelativeLayout) contentView
                 .findViewById(R.id.pop_sex_woman);
-        RelativeLayout mCancleLayout = (RelativeLayout) contentView
+        RelativeLayout mCancelLayout = (RelativeLayout) contentView
                 .findViewById(R.id.pop_sex_quite);
 
         // 男
@@ -299,7 +442,7 @@ public class UserInfoActivity extends BaseActivity {
             }
         });
         // 取消
-        mCancleLayout.setOnClickListener(new View.OnClickListener() {
+        mCancelLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -314,7 +457,7 @@ public class UserInfoActivity extends BaseActivity {
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.setOutsideTouchable(true);
 
-        mPopupWindow.setAnimationStyle(R.style.animation);
+        mPopupWindow.setAnimationStyle(R.style.animation_bottom);
         mPopupWindow.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 
         // 实例化一个ColorDrawable颜色为半透明

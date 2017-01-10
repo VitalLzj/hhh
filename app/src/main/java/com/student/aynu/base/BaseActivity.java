@@ -33,12 +33,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public MyApp mApplication;
     public Gson gson;
+    public long lastClickTime = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        lastClickTime = 0;
         gson = new Gson();
         mApplication = (MyApp) getApplication();
         mApplication.init(this); // 把 this 传过去，，这里主要是要 得到当前的或者是出错的activity的包名和类名

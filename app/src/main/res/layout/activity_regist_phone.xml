@@ -54,8 +54,7 @@
         <EditText
             android:id="@+id/register_name"
             style="@style/register_text_right"
-            android:hint="请输入用户名"
-            android:maxLength="11" />
+            android:hint="请输入用户名" />
 
         <TextView
             android:id="@+id/register_check"

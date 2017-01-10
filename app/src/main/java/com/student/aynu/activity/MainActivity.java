@@ -141,7 +141,9 @@ public class MainActivity extends BaseActivity {
                 //进入个人中心前，检测token是否过期。
                 if (!checkIsLogin(MainActivity.this)) {
                     //没有登录
-                    startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.putExtra("flag", 5);
+                    startActivityForResult(intent, REQUEST_CODE);
                     ToastUtil.showFaliureToast(MainActivity.this, "请重新登录");
                 } else {
                     //没有过期
@@ -154,41 +156,12 @@ public class MainActivity extends BaseActivity {
                     mMineImage.setImageResource(R.mipmap.foot_5_hover);
                     mMineText.setTextColor(Color.rgb(153, 0, 0));
                 }
-
                 break;
             default:
                 break;
         }
         fragmentTransaction.commit();
     }
-
-//    /**
-//     * 检测token是否过期
-//     */
-//    private void checkToken() {
-//        StringRequest request = new StringRequest(IpUtil.checkToken, RequestMethod.POST);
-//        request.set("userid", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("user_id", ""));
-//        request.set("token", getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", ""));
-//        request(0, request, callback, false, false);
-//    }
-//
-//    HttpListener<String> callback = new HttpListener<String>() {
-//        @Override
-//        public void onSucceed(int what, Response<String> response) {
-//            String responseInfo = response.get();
-//            Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
-//            if (base.getCode() == 0) {
-//
-//            } else {
-//
-//            }
-//        }
-//
-//        @Override
-//        public void onFailed(int what, Response<String> response) {
-//
-//        }
-//    };
 
     private void hideFragment(FragmentTransaction fragmentTransaction) {
         if (mTab1 != null) {
@@ -243,9 +216,12 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            if (resultCode == 0) {
+            Log.d("tag", "-----");
+            if (resultCode == RESULT_OK && data != null) {
+                Log.d("tag", "++++++++");
                 //登陆成功
                 int select = data.getIntExtra("select", 1);
+                Log.d("tag", select + "");
                 setSelect(select);
             }
         }

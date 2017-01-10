@@ -64,7 +64,7 @@ import butterknife.OnClick;
  * Created by lzj on 2017/1/4 0004.
  * 邮箱：976623696@qq.com
  */
-public class Register1Activity extends BaseActivity {
+public class RegisterActivity extends BaseActivity {
 
     @BindView(R.id.register_name)
     EditText mUserName_Edit;
@@ -172,9 +172,9 @@ public class Register1Activity extends BaseActivity {
     private void setSecurity() {
         StringRequest request = new StringRequest(IpUtil.setSecurity, RequestMethod.POST);
         request.set("uId", mUser_Id);
-        request.set("uSecurity1", mSecurityEdit1.getText().toString());
-        request.set("uSecurity2", mSecurityEdit2.getText().toString());
-        request.set("uSecurity3", mSecurityEdit3.getText().toString());
+        request.set("uSecurity1", Sha1Util.encode(mSecurityEdit1.getText().toString()));
+        request.set("uSecurity2", Sha1Util.encode(mSecurityEdit2.getText().toString()));
+        request.set("uSecurity3", Sha1Util.encode(mSecurityEdit3.getText().toString()));
         request(2, request, callback, false, true);
     }
 
@@ -199,7 +199,6 @@ public class Register1Activity extends BaseActivity {
                     mPop.dismiss();
                 }
                 //注册成功，跳转到登录界面，但未设置密保
-                startActivity(new Intent(mContext, LoginActivity.class));
                 finish();
             }
         });
@@ -219,11 +218,7 @@ public class Register1Activity extends BaseActivity {
             File file = new File(image_url);
             //新文件的文件名
             String filename = System.currentTimeMillis() + "";
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            Log.d("tag", "裁剪前" + bitmap.getAllocationByteCount() + "");
             Bitmap compressBitmap = new Bitmaputils().getCompressBitmap(file.getAbsolutePath(), 200, 200);
-            Log.d("tag", "裁剪后" + compressBitmap.getAllocationByteCount() + "");
-
             request.set("user_head", new BitmapBinary(compressBitmap, filename));
             is_head = "1";
         }
@@ -276,7 +271,6 @@ public class Register1Activity extends BaseActivity {
                     Base_entity is_Succeed = gson.fromJson(responseInfo, Base_entity.class);
                     if (is_Succeed.getCode() == 0) {
                         //密保设置成功，跳转登录界面
-                        startActivity(new Intent(mContext, LoginActivity.class));
                         finish();
                     } else {
                         mSecurityEdit1.setText("");
@@ -318,19 +312,14 @@ public class Register1Activity extends BaseActivity {
             public void onClick(View view) {
                 if (TextUtils.isEmpty(mSecurityEdit1.getText().toString())) {
                     ToastUtil.showText(mContext, "请输入您的QQ号码");
-                    return;
                 } else if (TextUtils.isEmpty(mSecurityEdit2.getText().toString())) {
                     ToastUtil.showText(mContext, "请输入您的邮箱地址");
-                    return;
                 } else if (TextUtils.isEmpty(mSecurityEdit3.getText().toString())) {
                     ToastUtil.showText(mContext, "请输入您的电话号码");
-                    return;
                 } else if (!isEmail(mSecurityEdit2.getText().toString())) {
                     ToastUtil.showText(mContext, "请输入正确的邮箱格式");
-                    return;
                 } else if (!isphoneNumber(mSecurityEdit3.getText().toString())) {
                     ToastUtil.showText(mContext, "请输入正确的电话格式");
-                    return;
                 } else {
                     setSecurity();
                 }
@@ -338,12 +327,8 @@ public class Register1Activity extends BaseActivity {
         });
         //主布局
         View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_regist_phone, null);
-        // 点击外部消失
-//        mPop.setBackgroundDrawable(new BitmapDrawable());
-//        mPop.setOutsideTouchable(true);
-        //动画加显示
         //淡入淡出
-        mPop.setAnimationStyle(R.style.animation);
+        mPop.setAnimationStyle(R.style.animation_bottom);
         mPop.showAtLocation(mainView, Gravity.CENTER, 0, 0);
         //实例化一个ColorDrawable颜色为半透明
         ColorDrawable dw = new ColorDrawable(0x00000000);
@@ -370,7 +355,7 @@ public class Register1Activity extends BaseActivity {
     }
 
     /**
-     * @param email
+     * @param email 邮箱地址
      * @return 邮箱地址的正则
      */
     public boolean isEmail(String email) {
@@ -381,7 +366,7 @@ public class Register1Activity extends BaseActivity {
     }
 
     /**
-     * @param phonenumber
+     * @param phonenumber 电话号码
      * @return 电话号码的正则
      */
     public boolean isphoneNumber(String phonenumber) {
@@ -420,7 +405,7 @@ public class Register1Activity extends BaseActivity {
                 .showCamera()
                 .requestCode(REQUEST_CODE)
                 .build();
-        ImageSelector.open(Register1Activity.this, imageConfig); // 开启图片选择器
+        ImageSelector.open(RegisterActivity.this, imageConfig); // 开启图片选择器
     }
 
     @Override
