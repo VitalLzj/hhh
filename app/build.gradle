@@ -47,5 +47,5 @@ dependencies {
     compile 'com.android.support:design:23.+'
     //图片先择期
     compile 'com.yancy.imageselector:imageselector:1.3.3'
-
+    compile files('libs/jsoup-1.8.1.jar')
 }

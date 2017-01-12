@@ -136,7 +136,7 @@ public class RegisterActivity extends BaseActivity {
                 break;
             case R.id.register_check:
                 if (TextUtils.isEmpty(mUserName_Edit.getText().toString())) {
-                    ToastUtil.showText(mContext, "请输入用户名");
+                    ToastUtil.showText(mContext, "请输入用户ID");
                     return;
                 }
                 Check_User();
@@ -159,7 +159,17 @@ public class RegisterActivity extends BaseActivity {
                         ToastUtil.showText(mContext, "请确保账号是否可用");
                         return;
                     } else {
-                        doRegister();
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setTitle("该ID供以后登录使用,一经注册不可更改,请慎重！！！")
+                                .setCancelable(false)
+                                .setNegativeButton("前去更改", null)
+                                .setPositiveButton("立即注册", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        doRegister();
+                                    }
+                                });
+                        builder.show();
                     }
                 }
                 break;

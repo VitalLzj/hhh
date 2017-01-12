@@ -270,4 +270,13 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
+
+    <style name="help_text" parent="android:Theme.Light">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#222</item>
+    </style>
+
 </resources>

@@ -39,6 +39,7 @@ public class User_Info {
 
     public static class DataBean {
         private String userid;
+        private String useraccount;
         private String username;
         private String userpwd;
         private String usersex;
@@ -121,5 +122,12 @@ public class User_Info {
             this.userid = userid;
         }
 
+        public String getUseraccount() {
+            return useraccount;
+        }
+
+        public void setUseraccount(String useraccount) {
+            this.useraccount = useraccount;
+        }
     }
 }

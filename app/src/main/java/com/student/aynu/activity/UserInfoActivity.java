@@ -125,7 +125,11 @@ public class UserInfoActivity extends BaseActivity {
                         //ID
                         mUser_Id.setText(user.getData().get(0).getUserid());
                         //设置用户名
-                        mUser_Name.setText(user.getData().get(0).getUsername());
+                        if ("".equals(user.getData().get(0).getUsername())) {
+                            mUser_Name.setText("未设置");
+                        } else {
+                            mUser_Name.setText(user.getData().get(0).getUsername());
+                        }
                         //性别
                         if ("".equals(user.getData().get(0).getUsersex())) {
                             mUser_Sex.setText("未设置");
@@ -147,6 +151,7 @@ public class UserInfoActivity extends BaseActivity {
                 case 1:
                     Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
                     if (base.getCode() == 0) {
+                        ToastUtil.showText(mContext, "上传成功");
                         //上传成功
                         Glide.with(mContext).load(image_url).dontAnimate().placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true).into(mUser_Head);

@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
+import com.student.aynu.activity.AboutUsActivity;
+import com.student.aynu.activity.FeedBackActivity;
+import com.student.aynu.activity.HelpActivity;
 import com.student.aynu.activity.LoginActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.base.BaseFragment;
@@ -88,10 +91,13 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_layout6:
                 break;
             case R.id.mine_layout7:
+                startActivity(new Intent(mContext, FeedBackActivity.class));
                 break;
             case R.id.mine_layout8:
+                startActivity(new Intent(mContext, HelpActivity.class));
                 break;
             case R.id.mine_layout9:
+                startActivity(new Intent(mContext, AboutUsActivity.class));
                 break;
         }
     }
@@ -119,8 +125,12 @@ public class MineFragment extends BaseFragment {
                     Glide.with(mContext).load(user.getData().get(0).getUserhead()).dontAnimate().placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true).into(mUser_Head);
                 }
-                //设置用户名
-                mUser_Name.setText("你好:" + user.getData().get(0).getUsername());
+                //设置用户名,如果用户名不为空，设置用户名，如果用户名为空，设置ID
+                if ("".equals(user.getData().get(0).getUsername())) {
+                    mUser_Name.setText("你好:" + user.getData().get(0).getUseraccount());
+                } else {
+                    mUser_Name.setText("你好:" + user.getData().get(0).getUsername());
+                }
             } else {
                 //登录过期了，重新登录
                 ToastUtil.showFaliureToast(mContext, "请重新登录");

@@ -49,12 +49,12 @@
 
         <TextView
             style="@style/register_text"
-            android:text="用户名    " />
+            android:text="用户ID    " />
 
         <EditText
             android:id="@+id/register_name"
             style="@style/register_text_right"
-            android:hint="请输入用户名" />
+            android:hint="请输入账户ID" />
 
         <TextView
             android:id="@+id/register_check"

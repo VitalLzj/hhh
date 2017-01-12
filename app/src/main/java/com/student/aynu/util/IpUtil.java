@@ -47,5 +47,11 @@ public class IpUtil {
     public static String checkUser_Security = Ip_head + "User/checkSecurity";
     //设置新密码
     public static String setNew_Pwd = Ip_head + "User/setNewPwd";
+    //获取关于我们信息
+    public static String getAPP_Info = Ip_head + "Introduce/getAboutUsInfo";
+    //反馈信息
+    public static String upload_Feed = Ip_head + "Feed/saveFeedBack";
+    //帮助中心，爬取官网数据
+    public static String aynu_url = "http://www.zujianlee.cn/aynu/aynu.html";
 
 }

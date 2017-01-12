@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/about_us_toolbar_left"
+            style="@style/back_img" />
+
+        <TextView
+            style="@style/page_title"
+            android:text="关于我们" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        //圆角图
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/about_us_head"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            app:riv_border_color="#e2e2e2"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="7dp" />
+
+        <TextView
+            android:id="@+id/about_us_banben"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/about_us_head"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#999" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/about_us_1"
+            style="@style/relative_fff_44">
+
+            <TextView
+                style="@style/userInfo_text"
+                android:text="安师说简介" />
+
+            <ImageView style="@style/userInfo_JT" />
+
+            <View
+                style="@style/e2e2e2_1px"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us_3"
+            style="@style/relative_fff_44">
+
+            <TextView
+                style="@style/userInfo_text"
+                android:text="联系电话" />
+
+            <ImageView
+                android:id="@+id/setting_JT_3"
+                style="@style/userInfo_JT" />
+
+            <TextView
+                android:id="@+id/about_us_phone"
+                style="@style/setting_right_text"
+                android:layout_toLeftOf="@id/setting_JT_3"
+                android:textColor="#999" />
+
+            <View
+                style="@style/e2e2e2_1px"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us_4"
+            style="@style/relative_fff_44"
+            android:layout_width="wrap_content">
+
+            <TextView
+                style="@style/userInfo_text"
+                android:text="联系QQ" />
+
+            <ImageView
+                android:id="@+id/setting_JT_4"
+                style="@style/userInfo_JT" />
+
+            <TextView
+                android:id="@+id/about_us_qq"
+                style="@style/setting_right_text"
+                android:layout_toLeftOf="@id/setting_JT_4"
+                android:textColor="#999" />
+
+            <View
+                style="@style/e2e2e2_1px"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us_5"
+            style="@style/relative_fff_44">
+
+            <TextView
+                style="@style/userInfo_text"
+                android:text="联系邮箱" />
+
+            <ImageView
+                android:id="@+id/setting_JT_5"
+                style="@style/userInfo_JT" />
+
+            <TextView
+                android:id="@+id/about_us_email"
+                style="@style/setting_right_text"
+                android:layout_toLeftOf="@id/setting_JT_5"
+                android:textColor="#999" />
+
+            <View
+                style="@style/e2e2e2_1px"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us_6"
+            style="@style/relative_fff_44">
+
+            <TextView
+                style="@style/userInfo_text"
+                android:text="版本检测" />
+
+            <ImageView
+                android:id="@+id/info_JT_6"
+                style="@style/userInfo_JT" />
+
+            <TextView
+                android:id="@+id/about_us_version"
+                style="@style/setting_right_text"
+                android:layout_toLeftOf="@id/info_JT_6"
+                android:textColor="#999" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="CopyRight © 2016"
+                android:textColor="#999"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="安阳师范学院计算机与信息工程学院"
+                android:textColor="#999"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
