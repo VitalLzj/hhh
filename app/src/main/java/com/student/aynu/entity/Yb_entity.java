@@ -1,37 +1,78 @@
 package com.student.aynu.entity;
 
+import java.util.List;
+
 /**
  * Created by lzj on 2017/1/12 0012.
  * 邮箱：976623696@qq.com
  */
 public class Yb_entity {
 
-    private String yb_name;
-    private String yb_bgs;
-    private String yb_phone;
+    private int code;
+    private String message;
 
-    public String getYb_phone() {
-        return yb_phone;
+    private List<DataBean> data;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setYb_phone(String yb_phone) {
-        this.yb_phone = yb_phone;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getYb_bgs() {
-        return yb_bgs;
+    public String getMessage() {
+        return message;
     }
 
-    public void setYb_bgs(String yb_bgs) {
-        this.yb_bgs = yb_bgs;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getYb_name() {
-        return yb_name;
+    public List<DataBean> getData() {
+        return data;
     }
 
-    public void setYb_name(String yb_name) {
-        this.yb_name = yb_name;
+    public void setData(List<DataBean> data) {
+        this.data = data;
     }
 
+    public static class DataBean {
+        private String yb_id;
+        private String yb_name;
+        private String yb_office;
+        private String yb_phone;
+
+        public String getYb_id() {
+            return yb_id;
+        }
+
+        public void setYb_id(String yb_id) {
+            this.yb_id = yb_id;
+        }
+
+        public String getYb_name() {
+            return yb_name;
+        }
+
+        public void setYb_name(String yb_name) {
+            this.yb_name = yb_name;
+        }
+
+        public String getYb_office() {
+            return yb_office;
+        }
+
+        public void setYb_office(String yb_office) {
+            this.yb_office = yb_office;
+        }
+
+        public String getYb_phone() {
+            return yb_phone;
+        }
+
+        public void setYb_phone(String yb_phone) {
+            this.yb_phone = yb_phone;
+        }
+    }
 }

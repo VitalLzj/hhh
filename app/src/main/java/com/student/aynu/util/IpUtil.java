@@ -51,7 +51,7 @@ public class IpUtil {
     public static String getAPP_Info = Ip_head + "Introduce/getAboutUsInfo";
     //反馈信息
     public static String upload_Feed = Ip_head + "Feed/saveFeedBack";
-    //帮助中心，爬取官网数据
-    public static String aynu_url = "http://www.zujianlee.cn/aynu/aynu.html";
+    //帮助中心
+    public static String getHelp_Info = Ip_head + "Help/showYxPhone?";
 
 }

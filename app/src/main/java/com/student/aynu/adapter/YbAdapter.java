@@ -2,6 +2,7 @@ package com.student.aynu.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,11 @@ import butterknife.ButterKnife;
  */
 public class YbAdapter extends RecyclerView.Adapter<YbAdapter.MyViewHolder> {
 
-    private List<Yb_entity> mLists;
+    private List<Yb_entity.DataBean> mLists;
     private LayoutInflater mInflater;
     private Context mContext;
 
-    public YbAdapter(List<Yb_entity> mLists, Context mContext) {
+    public YbAdapter(List<Yb_entity.DataBean> mLists, Context mContext) {
         this.mLists = mLists;
         this.mContext = mContext;
         this.mInflater = LayoutInflater.from(mContext);
@@ -45,17 +46,17 @@ public class YbAdapter extends RecyclerView.Adapter<YbAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.mYb_name.setText(mLists.get(position).getYb_name());
-        holder.mYb_bgs.setText(mLists.get(position).getYb_bgs());
+        holder.mYb_bgs.setText(mLists.get(position).getYb_office());
         holder.mYb_phone.setText(mLists.get(position).getYb_phone());
 
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(getScreenWidth(), LinearLayout.LayoutParams.MATCH_PARENT);
-        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(getScreenWidth() / 2, LinearLayout.LayoutParams.MATCH_PARENT);
-        if (position % 2 == 0) {
-            //view全显示
-            holder.mView.setLayoutParams(params1);
-        } else {
-            holder.mView.setLayoutParams(params2);
-        }
+//        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(getScreenWidth(), LinearLayout.LayoutParams.MATCH_PARENT);
+//        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(getScreenWidth() / 2, LinearLayout.LayoutParams.MATCH_PARENT);
+//        if (position % 2 == 0) {
+//            //view全显示
+//            holder.mView.setLayoutParams(params1);
+//        } else {
+//            holder.mView.setLayoutParams(params2);
+//        }
     }
 
     @Override
@@ -87,5 +88,16 @@ public class YbAdapter extends RecyclerView.Adapter<YbAdapter.MyViewHolder> {
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         float width = wm.getDefaultDisplay().getWidth();
         return (int) width;
+    }
+
+    //刷新
+    public void refresh(List<Yb_entity.DataBean> mLists) {
+        this.mLists.clear();
+        this.mLists = mLists;
+    }
+
+    //加载更多
+    public void loadMore(List<Yb_entity.DataBean> mLists) {
+        this.mLists = (mLists);
     }
 }

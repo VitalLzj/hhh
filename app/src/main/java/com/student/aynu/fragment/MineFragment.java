@@ -20,6 +20,7 @@ import com.student.aynu.activity.FeedBackActivity;
 import com.student.aynu.activity.HelpActivity;
 import com.student.aynu.activity.LoginActivity;
 import com.student.aynu.activity.UserInfoActivity;
+import com.student.aynu.activity.YbActivity;
 import com.student.aynu.base.BaseFragment;
 import com.student.aynu.entity.User_Info;
 import com.student.aynu.nohttp.HttpListener;
@@ -94,7 +95,7 @@ public class MineFragment extends BaseFragment {
                 startActivity(new Intent(mContext, FeedBackActivity.class));
                 break;
             case R.id.mine_layout8:
-                startActivity(new Intent(mContext, HelpActivity.class));
+                startActivity(new Intent(mContext, YbActivity.class));
                 break;
             case R.id.mine_layout9:
                 startActivity(new Intent(mContext, AboutUsActivity.class));
