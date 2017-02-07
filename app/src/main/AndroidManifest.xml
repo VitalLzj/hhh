@@ -38,8 +38,8 @@
         <activity android:name=".activity.ForGivePwdActivity" />
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.FeedBackActivity" />
-        <activity android:name=".activity.HelpActivity" />
         <activity android:name=".activity.YbActivity" />
+        <activity android:name=".activity.StyleActivity"/>
     </application>
 
 </manifest>

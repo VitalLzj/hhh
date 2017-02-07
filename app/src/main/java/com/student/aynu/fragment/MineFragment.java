@@ -17,8 +17,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.activity.AboutUsActivity;
 import com.student.aynu.activity.FeedBackActivity;
-import com.student.aynu.activity.HelpActivity;
 import com.student.aynu.activity.LoginActivity;
+import com.student.aynu.activity.StyleActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.activity.YbActivity;
 import com.student.aynu.base.BaseFragment;
@@ -90,6 +90,7 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_layout5:
                 break;
             case R.id.mine_layout6:
+                startActivity(new Intent(mContext, StyleActivity.class));
                 break;
             case R.id.mine_layout7:
                 startActivity(new Intent(mContext, FeedBackActivity.class));
