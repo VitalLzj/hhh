@@ -64,7 +64,6 @@ public class PicFragment extends BaseFragment {
         for (int i = 0; i < 10; i++) {
             mImgs.add("http://img1.3lian.com/2015/a1/113/d/10.jpg");
         }
-
         //垂直方向
         GridLayoutManager manager = new GridLayoutManager(mContext, 2);
         manager.setOrientation(GridLayoutManager.VERTICAL);
