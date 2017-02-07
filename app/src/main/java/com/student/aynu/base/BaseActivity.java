@@ -61,6 +61,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //检测用户是否登录
     public boolean checkIsLogin(Context context) {
+
+        //获取当前时间------检测token是否过期
+        long now_time = System.currentTimeMillis();
+        long last_time = getSharedPreferences("TOKEN", MODE_PRIVATE).getLong("token_time", 0);
+        if (now_time - last_time > 86400000) {
+            //表示token存在 已经大于一天了，已经过期了。清空
+            getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", null).commit();
+        }
+
         String token = context.getSharedPreferences("TOKEN", 0).getString("token", null);
         if (token == null) {
             return false;

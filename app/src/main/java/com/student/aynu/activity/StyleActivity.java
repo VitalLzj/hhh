@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.student.aynu.R;
@@ -53,6 +52,8 @@ public class StyleActivity extends BaseActivity {
 
     private static final String TAG = "StyleActivity";
 
+    Fragment mLeftFragment = null, mRightFragment = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +67,8 @@ public class StyleActivity extends BaseActivity {
     private void initData() {
         mFragmentLists = new ArrayList<>();
 
-        Fragment mLeftFragment = new PicFragment();
-        Fragment mRightFragment = new VideoFragment();
+        mLeftFragment = new PicFragment();
+        mRightFragment = new VideoFragment();
 
         mFragmentLists.add(mLeftFragment);
         mFragmentLists.add(mRightFragment);
@@ -152,6 +153,5 @@ public class StyleActivity extends BaseActivity {
         mRightText.setTextColor(Color.parseColor("#222222"));
         mRightView.setVisibility(View.GONE);
     }
-
 
 }

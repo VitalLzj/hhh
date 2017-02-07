@@ -184,6 +184,10 @@ public class LoginActivity extends BaseActivity {
                         //将用户的id保存到sp中-----用于检测token是否过期
                         String user_Id = login_entity.getData().getUid();
                         getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_id", user_Id).commit();
+                        //保存一个当前时间，用于在一天后清理token。
+                        //系统当前毫秒数
+                        long now_time = System.currentTimeMillis();
+                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putLong("token_time", now_time).commit();
                         //跳转到首页
                         Intent intent = new Intent();
                         intent.putExtra("select", 5);

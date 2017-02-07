@@ -40,6 +40,7 @@
         <activity android:name=".activity.FeedBackActivity" />
         <activity android:name=".activity.YbActivity" />
         <activity android:name=".activity.StyleActivity"/>
+        <activity android:name=".activity.PicActivity"/>
     </application>
 
 </manifest>
