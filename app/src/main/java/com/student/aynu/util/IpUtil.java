@@ -53,5 +53,7 @@ public class IpUtil {
     public static String upload_Feed = Ip_head + "Feed/saveFeedBack";
     //帮助中心
     public static String getHelp_Info = Ip_head + "Help/showYxPhone?";
+    //获取校园图片
+    public static String getStyle_Img = Ip_head + "StyleImg/getStyleImg?";
 
 }

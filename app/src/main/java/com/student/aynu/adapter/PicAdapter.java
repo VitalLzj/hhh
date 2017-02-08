@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.entity.Home_News;
+import com.student.aynu.entity.Style_Img;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ import butterknife.ButterKnife;
  */
 public class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
 
-    private List<String> mLists;
+    private List<Style_Img.DataBean> mLists;
     private LayoutInflater mInflater;
     private Context mContext;
     private onPhotoClcikListener onPhotoClcikListener;
 
-    public PicAdapter(List<String> mLists, Context mContext) {
+    public PicAdapter(List<Style_Img.DataBean> mLists, Context mContext) {
         this.mLists = mLists;
         this.mContext = mContext;
         this.mInflater = LayoutInflater.from(mContext);
@@ -45,7 +46,7 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Glide.with(mContext).load(mLists.get(position)).placeholder(R.mipmap.ic_launcher).into(holder.mPhoto);
+        Glide.with(mContext).load(mLists.get(position).getStyle_img_url()).centerCrop().placeholder(R.mipmap.ic_launcher).into(holder.mPhoto);
 
         holder.mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,13 +83,13 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
     }
 
     //刷新
-    public void refresh(List<String> mLists) {
+    public void refresh(List<Style_Img.DataBean> mLists) {
         this.mLists.clear();
         this.mLists = mLists;
     }
 
     //加载更多
-    public void loadMore(List<String> mLists) {
+    public void loadMore(List<Style_Img.DataBean> mLists) {
         this.mLists = (mLists);
     }
 }
