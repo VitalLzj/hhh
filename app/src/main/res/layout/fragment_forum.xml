@@ -15,6 +15,17 @@
         <TextView
             style="@style/page_title"
             android:text="论坛" />
+
+        <TextView
+            android:id="@+id/forum_toolbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/margin_right"
+            android:text="发帖"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
     </android.support.v7.widget.Toolbar>
 
 </LinearLayout>

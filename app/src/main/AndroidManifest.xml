@@ -41,6 +41,7 @@
         <activity android:name=".activity.YbActivity" />
         <activity android:name=".activity.StyleActivity"/>
         <activity android:name=".activity.PicActivity"/>
+        <activity android:name=".activity.PublishActivity"/>
     </application>
 
 </manifest>

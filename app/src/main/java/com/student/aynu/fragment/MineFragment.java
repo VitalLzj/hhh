@@ -18,6 +18,7 @@ import com.student.aynu.R;
 import com.student.aynu.activity.AboutUsActivity;
 import com.student.aynu.activity.FeedBackActivity;
 import com.student.aynu.activity.LoginActivity;
+import com.student.aynu.activity.PicActivity;
 import com.student.aynu.activity.StyleActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.activity.YbActivity;
@@ -49,6 +50,9 @@ public class MineFragment extends BaseFragment {
     SwipeRefreshLayout mRefreshLayout;
     private Context mContext;
 
+    //头像的url
+    private String mUser_Img = null;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.mine_layout1, R.id.mine_layout2, R.id.mine_layout3,
             R.id.mine_layout4, R.id.mine_layout5, R.id.mine_layout6,
-            R.id.mine_layout7, R.id.mine_layout8, R.id.mine_layout9})
+            R.id.mine_layout7, R.id.mine_layout8, R.id.mine_layout9, R.id.mine_head})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mine_layout1:
@@ -101,6 +105,14 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_layout9:
                 startActivity(new Intent(mContext, AboutUsActivity.class));
                 break;
+            case R.id.mine_head:
+                if (null == mUser_Img) {
+                    return;
+                }
+                Intent intent = new Intent(mContext, PicActivity.class);
+                intent.putExtra("img_url", mUser_Img);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -124,6 +136,7 @@ public class MineFragment extends BaseFragment {
                 //登陆成功
                 //设置头像
                 if (!user.getData().get(0).getUserhead().equals("")) {
+                    mUser_Img = user.getData().get(0).getUserhead();
                     Glide.with(mContext).load(user.getData().get(0).getUserhead()).dontAnimate().placeholder(R.mipmap.ic_launcher).diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true).into(mUser_Head);
                 }

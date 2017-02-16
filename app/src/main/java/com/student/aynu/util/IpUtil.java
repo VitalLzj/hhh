@@ -55,5 +55,6 @@ public class IpUtil {
     public static String getHelp_Info = Ip_head + "Help/showYxPhone?";
     //获取校园图片
     public static String getStyle_Img = Ip_head + "StyleImg/getStyleImg?";
-
+    //发表论坛
+    public static String upload_Forum=Ip_head+"Forum/saveForum?";
 }
