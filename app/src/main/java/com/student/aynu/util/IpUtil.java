@@ -56,5 +56,7 @@ public class IpUtil {
     //获取校园图片
     public static String getStyle_Img = Ip_head + "StyleImg/getStyleImg?";
     //发表论坛
-    public static String upload_Forum=Ip_head+"Forum/saveForum?";
+    public static String upload_Forum = Ip_head + "Forum/saveForum?";
+    //获取论坛信息
+    public static String getForum_List = Ip_head + "Forum/getForumList?";
 }

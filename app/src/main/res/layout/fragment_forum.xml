@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
+    android:gravity="center"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -28,4 +29,15 @@
             android:textSize="15sp" />
     </android.support.v7.widget.Toolbar>
 
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/forum_LRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/forum_error_img"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/nodate"
+        android:visibility="gone" />
 </LinearLayout>
