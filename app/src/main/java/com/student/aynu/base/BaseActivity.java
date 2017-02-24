@@ -67,11 +67,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         long last_time = getSharedPreferences("TOKEN", MODE_PRIVATE).getLong("token_time", 0);
         if (now_time - last_time > 86400000) {
             //表示token存在 已经大于一天了，已经过期了。清空
-            getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", null).commit();
+            getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", "").commit();
         }
 
-        String token = context.getSharedPreferences("TOKEN", 0).getString("token", null);
-        if (token == null) {
+        String token = context.getSharedPreferences("TOKEN", 0).getString("token", "");
+        if ("".equals(token)) {
             return false;
         } else {
             mApplication.uname_token = token;

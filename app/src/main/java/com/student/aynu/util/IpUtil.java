@@ -59,4 +59,14 @@ public class IpUtil {
     public static String upload_Forum = Ip_head + "Forum/saveForum?";
     //获取论坛信息
     public static String getForum_List = Ip_head + "Forum/getForumList?";
+    //获取论坛详情
+    public static String getForum_Detail = Ip_head + "Forum/getForumDetail?";
+    //提交评论
+    public static String upload_Forum_Pl = Ip_head + "ForumPl/saveForumPl?";
+    //获取帖子评论列表
+    public static String getForum_Pl_List = Ip_head + "ForumPl/getForumPlList?";
+    //检测用户是否点赞
+    public static String check_User_IsZan = Ip_head + "ForumPl/getUserIsZan?";
+    //用户点赞
+    public static String zan_Forum = Ip_head + "ForumPl/zanForum?";
 }

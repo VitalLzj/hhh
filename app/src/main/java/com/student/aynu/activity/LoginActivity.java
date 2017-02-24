@@ -188,6 +188,8 @@ public class LoginActivity extends BaseActivity {
                         //系统当前毫秒数
                         long now_time = System.currentTimeMillis();
                         getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putLong("token_time", now_time).commit();
+                        //将用户名保存sp中，方便评论使用
+                        mContext.getSharedPreferences("TOKEN", 0).edit().putString("user_name", mUnameEdit.getText().toString()).commit();
                         //跳转到首页
                         Intent intent = new Intent();
                         intent.putExtra("select", 5);

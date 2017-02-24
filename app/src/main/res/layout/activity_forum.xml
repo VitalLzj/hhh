@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/forum_toolbar_left"
+            style="@style/back_img" />
+
+        <TextView
+            style="@style/page_title"
+            android:text="帖子" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/forum_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/forum_no_data"
+        style="@style/no_data" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#fff">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentTop="true"
+            android:background="#ccc" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/forum_bottom_img"
+            style="@style/card_head_img"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/forum_bottom_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_right"
+            android:background="@drawable/forum_bottom_fb"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/forum_bottom_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/forum_bottom_fb"
+            android:layout_toRightOf="@id/forum_bottom_img"
+            android:background="@drawable/forum_bottom_edit"
+            android:hint="回复楼主"
+            android:padding="5dp"
+            android:textColorHint="#bbb"
+            android:textSize="13dp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -42,6 +42,7 @@
         <activity android:name=".activity.StyleActivity"/>
         <activity android:name=".activity.PicActivity"/>
         <activity android:name=".activity.PublishActivity"/>
+        <activity android:name=".activity.ForumActivity"/>
     </application>
 
 </manifest>

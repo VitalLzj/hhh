@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -20,6 +21,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.util.RecyclerViewStateUtils;
 import com.github.jdsjlzx.view.LoadingFooter;
 import com.student.aynu.R;
+import com.student.aynu.activity.ForumActivity;
 import com.student.aynu.activity.PublishActivity;
 import com.student.aynu.adapter.ForumAdapter;
 import com.student.aynu.base.BaseFragment;
@@ -59,6 +61,13 @@ public class ForumFragment extends BaseFragment {
     ImageView mErrorImg;
 
     private static final String TAG = "ForumFragment";
+
+    //发布帖子
+    private static final int REQUEST_CODE = 1;
+    //进入帖子详情
+    private static final int REQUEST_CODE_DETAIL = 2;
+    //进入的帖子所在的位置
+    private int mPosition = 0;
 
     @Nullable
     @Override
@@ -101,6 +110,16 @@ public class ForumFragment extends BaseFragment {
                 }
                 RecyclerViewStateUtils.setFooterViewState(getActivity(), mLRecycler, Constant.PAGE_SIZE, LoadingFooter.State.Loading, null);
                 requestLoadData(now_page);
+            }
+        });
+        //点击事件
+        mLRecyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                mPosition = position;
+                Intent intent = new Intent(mContext, ForumActivity.class);
+                intent.putExtra("fid", mLists.get(position).getFid());
+                startActivityForResult(intent, REQUEST_CODE_DETAIL);
             }
         });
 
@@ -193,7 +212,6 @@ public class ForumFragment extends BaseFragment {
                             mHandler.sendEmptyMessageDelayed(2, Constant.DELAY_TIME);
                         }
                     } else {
-                        Log.d(TAG, "1");
                         RecyclerViewStateUtils.setFooterViewState(getActivity(), mLRecycler, Constant.PAGE_SIZE, LoadingFooter.State.TheEnd, null);
                         ToastUtil.showFaliureToast(mContext, forum.getMessage());
                     }
@@ -209,8 +227,27 @@ public class ForumFragment extends BaseFragment {
     };
 
     @OnClick(R.id.forum_toolbar_right)
-    public void onClick(View view) {
-        startActivity(new Intent(mContext, PublishActivity.class));
+    public void onClick() {
+        startActivityForResult(new Intent(mContext, PublishActivity.class), REQUEST_CODE);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == -1) {
+                initData();
+            }
+        } else if (requestCode == REQUEST_CODE_DETAIL) {
+            if (resultCode == -1 && data != null) {
+                //接受传来的点赞数量与评论数量
+                String mZan = data.getStringExtra("zan");
+                String mPl = data.getStringExtra("pl");
+                //更新点赞与评论数量
+                mLists.get(mPosition).setFzan_num(mZan);
+                mLists.get(mPosition).setFping_num(mPl);
+                mLRecyclerAdapter.notifyDataSetChanged();
+            }
+        }
+    }
 }

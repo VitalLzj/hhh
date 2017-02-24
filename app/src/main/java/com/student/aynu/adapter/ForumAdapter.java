@@ -47,7 +47,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.MyViewHolder
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         Glide.with(mContext).load(mLists.get(position).getUserHead()).placeholder(R.mipmap.ic_launcher).into(holder.mHeadImg);
         if ("".equals(mLists.get(position).getUserName())) {
             //如果没有昵称，设置账号
@@ -67,7 +67,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.MyViewHolder
                 mImgs.add(mLists.get(position).getForumImgs().get(i).getFimgUrl());
             }
 
-            GridLayoutManager manager = new GridLayoutManager(mContext, 5);
+            GridLayoutManager manager = new GridLayoutManager(mContext, 3);
             manager.setOrientation(GridLayoutManager.VERTICAL);
             holder.mRecycler.setLayoutManager(manager);
             mAdapter = new Forum_PicAdapter(mImgs, mContext);
@@ -75,9 +75,10 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.MyViewHolder
 
             mAdapter.setOnPhotoClcikListener(new Forum_PicAdapter.onPhotoClcikListener() {
                 @Override
-                public void onClick(View v, int position) {
+                public void onClick(View v, int ImagePosition) {
+//                    Log.d("tag", "position=" +mLists.get(position).getForumImgs().get(ImagePosition).getFimgUrl());
                     Intent intent = new Intent(mContext, PicActivity.class);
-                    intent.putExtra("img_url", mImgs.get(position));
+                    intent.putExtra("img_url", mLists.get(position).getForumImgs().get(ImagePosition).getFimgUrl());
                     mContext.startActivity(intent);
                 }
             });

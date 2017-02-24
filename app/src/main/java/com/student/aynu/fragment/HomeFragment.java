@@ -127,7 +127,7 @@ public class HomeFragment extends BaseFragment {
     //获取标题
     private void getTitle() {
         JavaBeanRequest<Home_Title> request = new JavaBeanRequest<>(IpUtil.getHomeTitle, Home_Title.class);
-        request(0, request, callback2, false, true);
+        request(0, request, callback2, false, false);
     }
 
     HttpListener<Home_Title> callback2 = new HttpListener<Home_Title>() {

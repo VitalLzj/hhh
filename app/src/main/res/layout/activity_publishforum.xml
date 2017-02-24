@@ -33,22 +33,6 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="#fff">
-
-                <EditText
-                    android:id="@+id/publish_forum_title"
-                    style="@style/publish_forum_text"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:hint="请输入帖子标题" />
-            </RelativeLayout>
-
-            <View
-                style="@style/e2e2e2_1px"
-                android:layout_marginLeft="@dimen/margin_left" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
                 android:layout_height="135dp"
                 android:background="#fff">
 
@@ -56,18 +40,18 @@
                     android:id="@+id/publish_forum_content"
                     style="@style/publish_forum_text"
                     android:gravity="top"
-                    android:hint="请输入帖子内容"
+                    android:hint="说点什么吧..."
                     android:padding="@dimen/margin_left" />
             </RelativeLayout>
 
             <View style="@style/ccc_1px" />
 
             <android.support.v7.widget.RecyclerView
-                android:padding="@dimen/margin_left"
-                android:visibility="gone"
                 android:id="@+id/publish_forum_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_left"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/publish_forum_choose"
@@ -84,10 +68,10 @@
         android:id="@+id/publish_forum_relative"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/margin_left"
         android:layout_marginRight="@dimen/margin_right"
+        android:layout_marginTop="10dp"
         android:background="@drawable/publish_forum_back">
 
         <TextView

@@ -320,7 +320,7 @@
     <style name="card_head_content">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginLeft">@dimen/margin_left</item>
         <item name="android:layout_marginRight">@dimen/margin_right</item>
         <item name="android:layout_marginTop">5dp</item>
@@ -340,6 +340,23 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#999</item>
         <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- 无数据-->
+    <style name="no_data">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:src">@mipmap/wushuju</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="community_zhiding">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/margin_right</item>
         <item name="android:textSize">14sp</item>
     </style>
 </resources>

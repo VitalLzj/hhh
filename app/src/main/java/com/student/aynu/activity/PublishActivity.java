@@ -61,8 +61,8 @@ public class PublishActivity extends BaseActivity {
     @BindView(R.id.publish_forum_recycler)
     RecyclerView mRecycler;
     Forum_PicAdapter mAdapter;
-    @BindView(R.id.publish_forum_title)
-    EditText mTitleEdit;
+    //    @BindView(R.id.publish_forum_title)
+//    EditText mTitleEdit;
     @BindView(R.id.publish_forum_content)
     EditText mContentEdit;
     @BindView(R.id.publish_forum_relative)
@@ -82,22 +82,6 @@ public class PublishActivity extends BaseActivity {
     }
 
     private void initEvent() {
-        mTitleEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                changeBack();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
         mContentEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -117,10 +101,7 @@ public class PublishActivity extends BaseActivity {
     }
 
     private void changeBack() {
-        if (mTitleEdit.getText().toString().equals("")) {
-            mPublishRelativeLayout.setBackgroundResource(R.drawable.publish_forum_back);
-            mPublishText.setTextColor(Color.rgb(102, 102, 102));
-        } else if (mContentEdit.getText().toString().equals("")) {
+        if (mContentEdit.getText().toString().equals("")) {
             mPublishRelativeLayout.setBackgroundResource(R.drawable.publish_forum_back);
             mPublishText.setTextColor(Color.rgb(102, 102, 102));
         } else {
@@ -143,10 +124,7 @@ public class PublishActivity extends BaseActivity {
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 if (currentTime - lastClickTime > Constant.MIN_CLICK_DELAY_TIME) {
                     lastClickTime = currentTime;
-                    if (mTitleEdit.getText().toString().equals("")) {
-                        ToastUtil.showFaliureToast(mContext, "请输入主题");
-                        return;
-                    } else if (mContentEdit.getText().toString().equals("")) {
+                    if (mContentEdit.getText().toString().equals("")) {
                         ToastUtil.showFaliureToast(mContext, "请输入内容");
                         return;
                     } else {
@@ -163,7 +141,6 @@ public class PublishActivity extends BaseActivity {
     private void doPublish() {
         StringRequest request = new StringRequest(IpUtil.upload_Forum, RequestMethod.POST);
         request.set("token", mApplication.uname_token);
-        request.set("forumTitle", mTitleEdit.getText().toString());
         request.set("forumContent", mContentEdit.getText().toString());
         if (path.size() != 0) {
             for (int i = 0; i < path.size(); i++) {
@@ -186,9 +163,10 @@ public class PublishActivity extends BaseActivity {
             if (base.getCode() == 0) {
                 //发表成功
                 ToastUtil.showText(mContext, base.getMessage());
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             } else if (base.getCode() == 1) {
-                mTitleEdit.setText("");
                 mContentEdit.setText("");
                 ToastUtil.showFaliureToast(mContext, base.getMessage());
             } else {
@@ -255,7 +233,7 @@ public class PublishActivity extends BaseActivity {
             }
             //垂直方向
             if (null == mAdapter) {
-                GridLayoutManager manager = new GridLayoutManager(mContext, 5);
+                GridLayoutManager manager = new GridLayoutManager(mContext, 3);
                 manager.setOrientation(GridLayoutManager.VERTICAL);
                 mRecycler.setLayoutManager(manager);
                 mAdapter = new Forum_PicAdapter(pathList, mContext);

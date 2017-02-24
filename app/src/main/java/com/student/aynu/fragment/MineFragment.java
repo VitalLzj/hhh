@@ -146,6 +146,9 @@ public class MineFragment extends BaseFragment {
                 } else {
                     mUser_Name.setText("你好:" + user.getData().get(0).getUsername());
                 }
+                //将用户头像保存到sp中，方便评论时使用
+                mContext.getSharedPreferences("TOKEN", 0).edit().putString("user_face", mUser_Img).commit();
+
             } else {
                 //登录过期了，重新登录
                 ToastUtil.showFaliureToast(mContext, "请重新登录");

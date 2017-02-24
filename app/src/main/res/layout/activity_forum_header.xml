@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/forum_header_img"
+            style="@style/card_head_img"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/forum_header_user"
+            style="@style/card_head_user"
+            android:layout_toRightOf="@id/forum_header_img"
+            android:text="177****8888" />
+
+        <TextView
+            style="@style/card_head_right"
+            android:text="楼主"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:background="#e2e2e2" />
+
+    <TextView
+        android:id="@+id/forum_header_content"
+        style="@style/card_head_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="5dp"
+        android:text="这里是论坛楼主发的简介这里是论坛楼主发的简介这里是论坛楼主发的简介这里是论坛楼主发的简介这里是论坛楼主发的简介这里是论坛楼主发的简介这里是论坛楼主发的简介"
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/forum_Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_left"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/forum_header_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:text="06-20"
+            android:textColor="#999"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/forum_header_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/margin_right">
+
+            <ImageView
+                android:id="@+id/forum_header_dz"
+                style="@style/community_recycler_img"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/forum_header_dz_num"
+                style="@style/community_recycler_text"
+                android:layout_toRightOf="@id/forum_header_dz" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/forum_header_pl_num"
+            style="@style/community_recycler_text"
+            android:layout_toLeftOf="@+id/forum_header_layout"
+            android:text="25" />
+
+        <ImageView
+            style="@style/community_recycler_img"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/forum_header_pl_num"
+            android:src="@mipmap/shequ_ly" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e2e2e2" />
+</LinearLayout>
