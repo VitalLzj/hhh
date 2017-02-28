@@ -125,7 +125,7 @@
                         <TextView
                             android:id="@+id/mine_score_text"
                             style="@style/mine_order_linear_text"
-                            android:text="图书查询" />
+                            android:text="图书检索" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -177,11 +177,11 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@mipmap/my_index_8" />
+                            android:src="@mipmap/my_index_3" />
 
                         <TextView
                             style="@style/mine_order_linear_text"
-                            android:text="校园风采 " />
+                            android:text="图书收藏 " />
                     </LinearLayout>
                 </LinearLayout>
 

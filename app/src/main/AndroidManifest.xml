@@ -39,10 +39,14 @@
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.FeedBackActivity" />
         <activity android:name=".activity.YbActivity" />
-        <activity android:name=".activity.StyleActivity"/>
-        <activity android:name=".activity.PicActivity"/>
-        <activity android:name=".activity.PublishActivity"/>
-        <activity android:name=".activity.ForumActivity"/>
+        <activity android:name=".activity.StyleActivity" />
+        <activity android:name=".activity.PicActivity" />
+        <activity android:name=".activity.PublishActivity" />
+        <activity android:name=".activity.ForumActivity" />
+        <activity android:name=".activity.MyForumActivity" />
+        <activity android:name=".activity.MyReplyActivity" />
+        <activity android:name=".activity.BookActivity" />
+        <activity android:name=".activity.BookDetailActivity" />
     </application>
 
 </manifest>

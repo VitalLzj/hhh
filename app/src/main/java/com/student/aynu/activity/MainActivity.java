@@ -15,19 +15,12 @@ import android.widget.Toast;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.entity.Base_entity;
-import com.student.aynu.fragment.FindFragment;
+import com.student.aynu.fragment.StyleFragment;
 import com.student.aynu.fragment.ForumFragment;
 import com.student.aynu.fragment.HomeFragment;
 import com.student.aynu.fragment.InfoFragment;
 import com.student.aynu.fragment.MineFragment;
-import com.student.aynu.nohttp.HttpListener;
-import com.student.aynu.util.IpUtil;
-import com.student.aynu.util.Sha1Util;
 import com.student.aynu.util.ToastUtil;
-import com.yolanda.nohttp.RequestMethod;
-import com.yolanda.nohttp.rest.Response;
-import com.yolanda.nohttp.rest.StringRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -119,7 +112,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 3:
                 if (mTab3 == null) {
-                    mTab3 = new FindFragment();
+                    mTab3 = new StyleFragment();
                     fragmentTransaction.add(R.id.main_content, mTab3);
                 } else {
                     fragmentTransaction.show(mTab3);

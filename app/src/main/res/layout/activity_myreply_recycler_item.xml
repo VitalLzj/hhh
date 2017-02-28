@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f5f5f5" />
+
+    <View style="@style/ccc_1px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/myReply_recycler_head_img"
+            style="@style/myReply_recycler_img"
+            android:src="@mipmap/ic_launcher"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/myReply_recycler_head_time"
+            style="@style/myReply_recycler_text_12"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/myReply_recycler_head_img" />
+
+        <ImageView
+            android:id="@+id/myReply_recycler_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_right"
+            android:src="@mipmap/my_wenzhang_2" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/e2e2e2_1px"
+        android:layout_marginLeft="@dimen/margin_left" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/myReply_recycler_huifu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginTop="13dp"
+            android:text="回复："
+            android:textColor="#b00"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/myReply_recycler_hf_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_marginTop="13dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:textColor="#222"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/e2e2e2_1px"
+        android:layout_marginLeft="@dimen/margin_left" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <TextView
+            android:id="@+id/myReply_recycler_yt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:text="原贴："
+            android:textColor="#02617a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/myReply_recycler_yt_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_toRightOf="@id/myReply_recycler_yt"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#666"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <View style="@style/ccc_1px" />
+</LinearLayout>

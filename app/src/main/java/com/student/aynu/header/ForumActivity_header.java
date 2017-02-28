@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 帖子详情
+ * 帖子详情头部
  * Created by Administrator on 2016/9/6 0006.
  */
 public class ForumActivity_header extends LinearLayout {

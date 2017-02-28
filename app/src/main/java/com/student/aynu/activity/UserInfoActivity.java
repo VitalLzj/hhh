@@ -257,9 +257,10 @@ public class UserInfoActivity extends BaseActivity {
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //清空sp
-                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", null).commit();
+                        //清空sp token user_id user_face
+                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("token", "").commit();
                         getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_id", "").commit();
+                        getSharedPreferences("TOKEN", MODE_PRIVATE).edit().putString("user_face", "").commit();
                         Intent intent = new Intent(mContext, LoginActivity.class);
                         intent.putExtra("flag", 4);
                         startActivity(intent);

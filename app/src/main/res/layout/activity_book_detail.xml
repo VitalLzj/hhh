@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/book_detail_toolbar_left"
+            style="@style/back_img" />
+
+        <TextView
+            style="@style/page_title"
+            android:text="图书详情" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:id="@+id/book_detail_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/book_detail_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter" />
+
+                <RelativeLayout
+                    android:id="@+id/book_detail_sc_layout"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/sc_back"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/book_detail_sc_img"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/shop_main_sc" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:minHeight="50dp">
+
+                <View
+                    style="@style/e2e2e2_1px"
+                    android:layout_alignParentTop="true" />
+
+                <View
+                    android:id="@+id/product_detail_view"
+                    style="@style/product_detail_view" />
+
+                <TextView
+                    android:id="@+id/book_detail_name"
+                    style="@style/product_detail_name"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toLeftOf="@id/product_detail_view" />
+
+                <RelativeLayout
+                    android:id="@+id/book_detail_layout_fx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/product_detail_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp">
+
+                    <ImageView
+                        android:id="@+id/product_detail_fx"
+                        android:layout_width="22dp"
+                        android:layout_height="18dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@mipmap/shop_main_fx" />
+
+                    <TextView
+                        style="@style/product_detail_fx"
+                        android:layout_below="@+id/product_detail_fx"
+                        android:text="分享" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View style="@style/ccc_1px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="#f5f5f5" />
+
+            <View style="@style/ccc_1px" />
+
+            <TextView
+                android:id="@+id/book_detail_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_left"
+                android:lineSpacingExtra="5dp"
+                android:textSize="15sp" />
+
+            <View style="@style/ccc_1px" />
+
+            <RelativeLayout
+                style="@style/book_detail_left_relative"
+                android:layout_height="wrap_content"
+                android:minHeight="44dp">
+
+                <TextView
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="15dp"
+                    android:text="责任者"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/book_zrz"
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="75dp"
+                    android:textColor="#222222" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/book_detail_left_relative">
+
+                <TextView
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="15dp"
+                    android:text="出版社"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/book_cbs"
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="75dp"
+                    android:textColor="#222222" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/book_detail_left_relative">
+
+                <TextView
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="15dp"
+                    android:text="出版年"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/book_cby"
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="75dp"
+                    android:textColor="#222222" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/book_detail_left_relative">
+
+                <TextView
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="15dp"
+                    android:text="索书号"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/book_ssh"
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="75dp"
+                    android:textColor="#222222" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/book_detail_left_relative">
+
+                <TextView
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="15dp"
+                    android:text="馆藏数"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/book_gcs"
+                    style="@style/book_detail_left_text"
+                    android:layout_marginLeft="75dp"
+                    android:textColor="#222222" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/book_detail_no_data"
+        style="@style/no_data"
+        android:src="@mipmap/wuwang" />
+
+</LinearLayout>

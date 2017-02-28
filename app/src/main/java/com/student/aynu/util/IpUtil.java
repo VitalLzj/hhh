@@ -69,4 +69,18 @@ public class IpUtil {
     public static String check_User_IsZan = Ip_head + "ForumPl/getUserIsZan?";
     //用户点赞
     public static String zan_Forum = Ip_head + "ForumPl/zanForum?";
+    //获取用户的帖子
+    public static String get_User_Forum = Ip_head + "Forum/getUserForum?";
+    //删除用户帖子
+    public static String delete_User_Forum = Ip_head + "Forum/deleteUserForum?";
+    //获取用户的回复
+    public static String get_User_Reply = Ip_head + "ForumPl/getMyReply?";
+    //删除用户回复
+    public static String delete_User_Reply = Ip_head + "ForumPl/deleteUserReply?";
+    //获取图书查询banner
+    public static String get_Book_Banner = Ip_head + "Book/showBanners?";
+    //获取图书列表
+    public static String get_Book_List = Ip_head + "Book/getBooks?";
+    //获取图书详情
+    public static String get_Book_Detail = Ip_head + "Book/getBookDetail?";
 }

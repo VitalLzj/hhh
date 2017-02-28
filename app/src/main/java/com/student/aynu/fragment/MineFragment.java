@@ -16,8 +16,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.activity.AboutUsActivity;
+import com.student.aynu.activity.BookActivity;
 import com.student.aynu.activity.FeedBackActivity;
 import com.student.aynu.activity.LoginActivity;
+import com.student.aynu.activity.MyForumActivity;
+import com.student.aynu.activity.MyReplyActivity;
 import com.student.aynu.activity.PicActivity;
 import com.student.aynu.activity.StyleActivity;
 import com.student.aynu.activity.UserInfoActivity;
@@ -88,10 +91,13 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_layout2:
                 break;
             case R.id.mine_layout3:
+                startActivity(new Intent(mContext, BookActivity.class));
                 break;
             case R.id.mine_layout4:
+                startActivity(new Intent(mContext, MyForumActivity.class));
                 break;
             case R.id.mine_layout5:
+                startActivity(new Intent(mContext, MyReplyActivity.class));
                 break;
             case R.id.mine_layout6:
                 startActivity(new Intent(mContext, StyleActivity.class));

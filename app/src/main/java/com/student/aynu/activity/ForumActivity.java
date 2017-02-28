@@ -401,7 +401,7 @@ public class ForumActivity extends BaseActivity {
                     } else {
                         mHeaderView.mZanImg.setImageResource(R.mipmap.shequ_dz);
                     }
-                    break;
+                   break;
                 case 6:
                     Base_entity base3 = gson.fromJson(responseInfo, Base_entity.class);
                     if (base3.getCode() == 0) {

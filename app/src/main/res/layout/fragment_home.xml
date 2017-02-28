@@ -30,7 +30,7 @@
             <cn.bingoogolapple.bgabanner.BGABanner
                 android:id="@+id/banner_content"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="240dp"
                 android:layout_below="@id/message_toolbar"
                 app:banner_indicatorGravity="bottom|right"
                 app:banner_pageChangeDuration="2000"

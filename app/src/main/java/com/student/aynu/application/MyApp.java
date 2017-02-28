@@ -19,8 +19,8 @@ public class MyApp extends Application {
         // 一般情况下你只需要这样初始化：
         NoHttp.initialize(this, new NoHttp.Config()
                 .setNetworkExecutor(new OkHttpNetworkExecutor())
-                .setConnectTimeout(5 * 1000)
-                .setReadTimeout(5 * 1000));
+                .setConnectTimeout(10 * 1000)
+                .setReadTimeout(10 * 1000));
     }
 
     ArrayList<Activity> list = new ArrayList<Activity>();

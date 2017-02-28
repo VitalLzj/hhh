@@ -12,12 +12,20 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <ImageView
-            android:id="@+id/collection_toolbar_left"
+            android:id="@+id/myReply_toolbar_left"
             style="@style/back_img" />
 
         <TextView
             style="@style/page_title"
-            android:text="校园风采" />
+            android:text="我的回复" />
     </android.support.v7.widget.Toolbar>
 
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/myReply_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/myReply_no_data"
+        style="@style/no_data" />
 </LinearLayout>
