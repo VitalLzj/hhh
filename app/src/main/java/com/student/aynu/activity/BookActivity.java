@@ -295,8 +295,15 @@ public class BookActivity extends BaseActivity {
         }
     };
 
-    @OnClick(R.id.book_toolbar_left)
-    public void onClick() {
-        finish();
+    @OnClick({R.id.book_toolbar_left, R.id.book_search_relative2})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.book_toolbar_left:
+                finish();
+                break;
+            case R.id.book_search_relative2:
+                startActivity(new Intent(mContext, BookSearchActivity.class));
+                break;
+        }
     }
 }

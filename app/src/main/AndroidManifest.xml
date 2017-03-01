@@ -47,6 +47,8 @@
         <activity android:name=".activity.MyReplyActivity" />
         <activity android:name=".activity.BookActivity" />
         <activity android:name=".activity.BookDetailActivity" />
+        <activity android:name=".activity.BookSearchActivity" />
+        <activity android:name=".activity.BookSearchResultActivity" />
     </application>
 
 </manifest>

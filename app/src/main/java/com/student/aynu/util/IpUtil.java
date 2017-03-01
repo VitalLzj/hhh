@@ -91,4 +91,8 @@ public class IpUtil {
     public static String get_Sc_List = Ip_head + "Book/getScList?";
     //取消收藏书籍
     public static String do_Quite_Sc = Ip_head + "Book/quiteBookSc?";
+    //获取推荐图书
+    public static String get_Tj_Books = Ip_head + "Book/getTjBooks";
+    //搜索图书
+    public static String search_Books = Ip_head + "Book/searchBooks?";
 }
