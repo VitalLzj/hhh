@@ -22,7 +22,7 @@ import com.student.aynu.activity.LoginActivity;
 import com.student.aynu.activity.MyForumActivity;
 import com.student.aynu.activity.MyReplyActivity;
 import com.student.aynu.activity.PicActivity;
-import com.student.aynu.activity.StyleActivity;
+import com.student.aynu.activity.BookScActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.activity.YbActivity;
 import com.student.aynu.base.BaseFragment;
@@ -100,7 +100,7 @@ public class MineFragment extends BaseFragment {
                 startActivity(new Intent(mContext, MyReplyActivity.class));
                 break;
             case R.id.mine_layout6:
-                startActivity(new Intent(mContext, StyleActivity.class));
+                startActivity(new Intent(mContext, BookScActivity.class));
                 break;
             case R.id.mine_layout7:
                 startActivity(new Intent(mContext, FeedBackActivity.class));

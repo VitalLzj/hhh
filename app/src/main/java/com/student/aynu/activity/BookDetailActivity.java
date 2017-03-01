@@ -1,6 +1,7 @@
 package com.student.aynu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
+import com.student.aynu.entity.Base_entity;
 import com.student.aynu.entity.Book_Detail;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
@@ -66,9 +68,6 @@ public class BookDetailActivity extends BaseActivity {
     @BindView(R.id.book_detail_no_data)
     ImageView mErrorImg;
 
-    //收藏
-    @BindView(R.id.book_detail_sc_layout)
-    RelativeLayout mScLayout;
     @BindView(R.id.book_detail_sc_img)
     ImageView mScImg;
 
@@ -93,6 +92,7 @@ public class BookDetailActivity extends BaseActivity {
 
     private void initData() {
         getBookDetail();
+        getBookIsSc();
     }
 
     //加载 防止oom的handler
@@ -143,18 +143,69 @@ public class BookDetailActivity extends BaseActivity {
         request(0, request, callback, false, true);
     }
 
+    /**
+     * 是否收藏了书
+     */
+    private void getBookIsSc() {
+        StringRequest request = new StringRequest(IpUtil.get_User_Is_Sc + "token=" + mApplication.uname_token
+                + "&bid=" + bid, RequestMethod.GET);
+        request(1, request, callback, false, true);
+    }
+
+    /**
+     * 收藏书籍
+     */
+    private void doSc() {
+        StringRequest request = new StringRequest(IpUtil.doSc_Book + "token=" + mApplication.uname_token
+                + "&bid=" + bid, RequestMethod.GET);
+        request(2, request, callback, false, true);
+    }
+
+
     HttpListener<String> callback = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
             String responseInfo = response.get();
-            Book_Detail mBookData = gson.fromJson(responseInfo, Book_Detail.class);
-            if (mBookData.getCode() == 0) {
-                //获取成功
-                mBookDetails = mBookData.getData().get(0);
-                mHandler.sendEmptyMessage(0);
-            } else {
-                ToastUtil.showFaliureToast(mContext, "这不可能发生");
+            switch (what) {
+                case 0:
+                    Book_Detail mBookData = gson.fromJson(responseInfo, Book_Detail.class);
+                    if (mBookData.getCode() == 0) {
+                        //获取成功
+                        mBookDetails = mBookData.getData().get(0);
+                        mHandler.sendEmptyMessage(0);
+                    } else {
+                        ToastUtil.showFaliureToast(mContext, "这不可能发生");
+                    }
+                    break;
+                case 1:
+                    Base_entity base2 = gson.fromJson(responseInfo, Base_entity.class);
+                    if (base2.getCode() == 0) {
+                        //已收藏
+                        mScImg.setImageResource(R.mipmap.shop_main_schover);
+                    } else {
+                        mScImg.setImageResource(R.mipmap.shop_main_sc);
+                    }
+                    break;
+                case 2:
+                    Base_entity base = gson.fromJson(responseInfo, Base_entity.class);
+                    if (base.getCode() == 0) {
+                        //收藏成功
+                        mScImg.setImageResource(R.mipmap.shop_main_schover);
+                        ToastUtil.showText(mContext, base.getMessage());
+                    } else if (base.getCode() == 1) {
+                        //收藏失败
+                        ToastUtil.showFaliureToast(mContext, base.getMessage());
+                    } else if (base.getCode() == 3) {
+                        //已收藏，不要重复收藏
+                        ToastUtil.showFaliureToast(mContext, base.getMessage());
+                    } else {
+                        //登录过期了，重新登录
+                        ToastUtil.showFaliureToast(mContext, "请重新登录");
+                        startActivity(new Intent(mContext, LoginActivity.class));
+                    }
+                    break;
             }
+
         }
 
         @Override
@@ -164,7 +215,7 @@ public class BookDetailActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.book_detail_toolbar_left, R.id.book_detail_layout_fx})
+    @OnClick({R.id.book_detail_toolbar_left, R.id.book_detail_layout_fx, R.id.book_detail_sc_layout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.book_detail_toolbar_left:
@@ -173,8 +224,10 @@ public class BookDetailActivity extends BaseActivity {
             case R.id.book_detail_layout_fx:
                 ShareUtils.share(mContext, mBookDetails.getBname());
                 break;
+            case R.id.book_detail_sc_layout:
+                doSc();
+                break;
         }
     }
-
 
 }

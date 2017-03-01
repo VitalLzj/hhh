@@ -83,4 +83,12 @@ public class IpUtil {
     public static String get_Book_List = Ip_head + "Book/getBooks?";
     //获取图书详情
     public static String get_Book_Detail = Ip_head + "Book/getBookDetail?";
+    //用户是否收藏
+    public static String get_User_Is_Sc = Ip_head + "Book/getUserIsSc?";
+    //收藏书籍
+    public static String doSc_Book = Ip_head + "Book/scBook?";
+    //获取收藏列表
+    public static String get_Sc_List = Ip_head + "Book/getScList?";
+    //取消收藏书籍
+    public static String do_Quite_Sc = Ip_head + "Book/quiteBookSc?";
 }
