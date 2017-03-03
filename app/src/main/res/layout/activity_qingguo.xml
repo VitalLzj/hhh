@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:id="@+id/qGuo_toolbar_left"
+            style="@style/back_img" />
+
+        <TextView
+            style="@style/page_title"
+            android:text="青果登录" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_margin="@dimen/margin_left"
+                android:background="@drawable/register_item_bg">
+
+                <TextView
+                    style="@style/register_text"
+                    android:text="学        号" />
+
+                <EditText
+                    android:id="@+id/qGuo_number"
+                    style="@style/register_text_right"
+                    android:hint="请输入您的学号"
+                    android:inputType="number" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_margin="@dimen/margin_left"
+                android:background="@drawable/register_item_bg">
+
+                <TextView
+                    style="@style/register_text"
+                    android:text="密        码" />
+
+                <EditText
+                    android:id="@+id/qGuo_password"
+                    style="@style/register_text_right"
+                    android:hint="请输入登录密码"
+                    android:inputType="textPassword" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_margin="@dimen/margin_left"
+                android:background="@drawable/register_item_bg">
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentTop="true" />
+
+                <TextView
+                    style="@style/register_text"
+                    android:text="验  证  码" />
+
+                <EditText
+                    android:id="@+id/qGuo_code"
+                    style="@style/register_text_right"
+                    android:hint="请输入下方验证码" />
+
+                <TextView
+                    android:id="@+id/qGuo_get"
+                    android:layout_width="54dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="获取"
+                    android:textColor="#222"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/qGuo_get"
+                    android:background="#e2e2e2" />
+
+                <View
+                    style="@style/ccc_1px"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/qGuo_code_img"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/qGuo_login"
+        style="@style/bottom_relative"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/bottom_text"
+            android:text="立即登录" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -49,6 +49,11 @@
         <activity android:name=".activity.BookDetailActivity" />
         <activity android:name=".activity.BookSearchActivity" />
         <activity android:name=".activity.BookSearchResultActivity" />
+        <activity android:name=".activity.QingGuoActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.StudentActivity" />
+        <activity android:name=".activity.StudentInfoActivity"/>
+        <activity android:name=".activity.StudentScoreActivity"/>
     </application>
 
 </manifest>

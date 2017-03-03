@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <TextView
+            android:id="@+id/appointment_pop_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="#222"
+            android:textSize="14sp" />
+
+        <View
+            style="@style/e2e2e2_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_left" />
+    </RelativeLayout>
+
+</LinearLayout>

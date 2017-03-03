@@ -107,7 +107,7 @@
 
                         <TextView
                             style="@style/mine_order_linear_text"
-                            android:text="青果查询" />
+                            android:text="青果登录" />
                     </LinearLayout>
 
                     <View style="@style/e2e2e2_high" />

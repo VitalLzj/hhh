@@ -95,4 +95,19 @@ public class IpUtil {
     public static String get_Tj_Books = Ip_head + "Book/getTjBooks";
     //搜索图书
     public static String search_Books = Ip_head + "Book/searchBooks?";
+    //获取可选择的学年
+    public static String get_Xn = Ip_head + "Student/getStudentXq";
+
+    //获取验证码的url
+    public static String get_Code = "http://202.196.240.43/jwweb/sys/ValidateCode.aspx";
+    //获取cookie的url
+    public static String get_Cookie = "http://202.196.240.43/jwweb/_data/index_LOGIN.aspx";
+    //进行登录的url
+    public static String do_Login = "http://202.196.240.43/jwweb/_data/home_login.aspx";
+    //学生信息url
+    public static String get_Student_Info = "http://202.196.240.43/jwweb/xsxj/Stu_MyInfo_RPT.aspx";
+    //学生成绩信息
+    public static String get_Student_Head = "http://202.196.240.43/jwweb/xscj/Stu_MyScore_rpt.aspx";
+    //学生成绩
+    public static String get_Student_Score = "http://202.196.240.43/jwweb/xscj/Stu_MyScore_Drawimg.aspx?";
 }

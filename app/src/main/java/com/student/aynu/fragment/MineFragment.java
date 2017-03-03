@@ -23,6 +23,7 @@ import com.student.aynu.activity.MyForumActivity;
 import com.student.aynu.activity.MyReplyActivity;
 import com.student.aynu.activity.PicActivity;
 import com.student.aynu.activity.BookScActivity;
+import com.student.aynu.activity.QingGuoActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.activity.YbActivity;
 import com.student.aynu.base.BaseFragment;
@@ -89,6 +90,7 @@ public class MineFragment extends BaseFragment {
                 startActivity(new Intent(mContext, UserInfoActivity.class));
                 break;
             case R.id.mine_layout2:
+                startActivity(new Intent(mContext, QingGuoActivity.class));
                 break;
             case R.id.mine_layout3:
                 startActivity(new Intent(mContext, BookActivity.class));
