@@ -36,9 +36,10 @@ public class StudentActivity extends BaseActivity {
                 startActivity(new Intent(mContext, StudentInfoActivity.class));
                 break;
             case R.id.student_layout2:
-                startActivity(new Intent(mContext, StudentScoreActivity.class));
+                startActivity(new Intent(mContext, StudentClassActivity.class));
                 break;
             case R.id.student_layout3:
+                startActivity(new Intent(mContext, StudentScoreActivity.class));
                 break;
             case R.id.student_toolbar_left:
                 finish();

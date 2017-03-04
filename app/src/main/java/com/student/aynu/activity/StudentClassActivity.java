@@ -7,7 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +20,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.student.aynu.R;
-import com.student.aynu.adapter.StudentXnAdapter;
-import com.student.aynu.adapter.StudentXqAdapter;
+import com.student.aynu.adapter.KlassAdapter;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.entity.Student;
+import com.student.aynu.entity.Kclass;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
+import com.student.aynu.util.Sha1Util;
 import com.student.aynu.util.ToastUtil;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
@@ -46,88 +46,102 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by lzj on 2017/3/3 0003.
+ * Created by lzj on 2017/3/4 0004.
  * 邮箱：976623696@qq.com
- * 学生成绩
+ * 学生课表
  */
-public class StudentScoreActivity extends BaseActivity {
-
+public class StudentClassActivity extends BaseActivity {
     private Context mContext;
 
-    @BindView(R.id.student_score_xn_text)
-    TextView mXnText;
-    @BindView(R.id.student_score_xq_text)
+    @BindView(R.id.student_class_xq_text)
     TextView mXqText;
-    @BindView(R.id.student_score_img)
-    ImageView mScoreImg;
+    @BindView(R.id.student_class_img)
+    ImageView mClassImg;
+    private List<Kclass.DataBean> mLists;
+    private PopupWindow mXqPop;
 
-    private PopupWindow mXnPop, mXqPop;
-    private List<Student.DataBean> mLists;
-    private List<Student.DataBean.XxxxBean> mXqLists;
-
-    //获取成绩需要拼接的参数
     private String xn, xq;
-
-    //成绩图片链接
-    private String imgSrc = "";
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mContext = this;
-        setContentView(R.layout.activity_student_score);
+        setContentView(R.layout.activity_student_class);
         ButterKnife.bind(this);
         initData();
     }
 
     private void initData() {
-        mLists = new ArrayList<>();
-        mXqLists = new ArrayList<>();
-        getStudentXn();
+        getCode();
     }
 
     /**
-     * 获取学年
+     * 首先获取加密后的验证码
      */
-    private void getStudentXn() {
-        StringRequest request = new StringRequest(IpUtil.get_Xn, RequestMethod.GET);
+    private void getCode() {
+        StringRequest request = new StringRequest(IpUtil.get_Class_code, RequestMethod.GET);
         request(0, request, callback, false, true);
     }
 
     /**
-     * 进行查询
+     * 获取学期
      */
-    private void doSearch() {
-        StringRequest request = new StringRequest(IpUtil.get_Student_Head, RequestMethod.POST);
-        request.set("sel_xn", xn);
-        request.set("sel_xq", xq);
-        request.set("SJ", "1");
-        request.set("btn_search", "����");
-        request.set("SelXNXQ", "2");
-        request.set("zfx_flag", "0");
-        request.set("zxf", "0");
+    private void getXq() {
+        mLists = new ArrayList<>();
+        StringRequest request = new StringRequest(IpUtil.get_Class_xq, RequestMethod.GET);
         request(1, request, callback, false, true);
     }
 
+    /**
+     * 进行检索课表 post方式传参数，获取图片地址
+     * 这个m是个随机数，可以固定表示
+     */
+    private void doSearch() {
+        StringRequest request = new StringRequest(IpUtil.get_Class_url + "m=lzj", RequestMethod.POST);
+        request.set("txt_yzm", "");
+        request.set("Sel_XNXQ", xn + xq);
+        request.set("rad", "1");
+        request.set("px", "0");
+        request.set("hidyzm", code);
+        request.set("hidsjyzm", getHidjyzm());
+        request(2, request, callback, false, true);
+    }
+
+    private String getHidjyzm() {
+        String sBuffer = "10479" +
+                xn +
+                xq +
+                "lzj";
+        return Sha1Util.encode(sBuffer).toUpperCase();
+    }
+
+    //加密后的验证码
+    private String code = "";
+    //成绩的图片
+    private String imgSrc = "";
     HttpListener<String> callback = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
             final String responseInfo = response.get();
             switch (what) {
                 case 0:
-                    Student student = gson.fromJson(responseInfo, Student.class);
-                    if (student.getCode() == 0) {
-                        //有数据
-                        mLists = student.getData();
+                    Document document = Jsoup.parse(responseInfo);
+                    //获取加密后的验证码
+                    code = document.select("input[name=hidyzm]").val();
+                    if (code.equals("")) {
+                        ToastUtil.showFaliureToast(mContext, "获取后台加密字符串出错，无法继续进行");
                     } else {
-                        ToastUtil.showFaliureToast(mContext, "暂无数据");
+                        getXq();
                     }
                     break;
                 case 1:
+                    Kclass klass = gson.fromJson(responseInfo, Kclass.class);
+                    mLists = klass.getData();
+                    break;
+                case 2:
                     imgSrc = "";
-                    Document document = Jsoup.parse(responseInfo);
-                    Elements elements = document.getElementsByTag("img");
+                    Document document2 = Jsoup.parse(responseInfo);
+                    Elements elements = document2.getElementsByTag("img");
                     //获取img的url
                     for (Element element : elements) {
                         imgSrc = element.attr("src");
@@ -135,7 +149,7 @@ public class StudentScoreActivity extends BaseActivity {
                     if (imgSrc.equals("")) {
                         ToastUtil.showFaliureToast(mContext, "暂无成绩");
                     } else {
-                        getScoreImg();
+                        getClassImg();
                     }
                     break;
             }
@@ -148,11 +162,11 @@ public class StudentScoreActivity extends BaseActivity {
     };
 
     /**
-     * 获取成绩图片
+     * 获取课表
      */
-    private void getScoreImg() {
-        Request<Bitmap> request = NoHttp.createImageRequest(IpUtil.get_Student_Score + imgSrc, RequestMethod.GET);
-        request.addHeader("Referer", "http://202.196.240.43/jwweb/xscj/Stu_MyScore_rpt.aspx");
+    private void getClassImg() {
+        Request<Bitmap> request = NoHttp.createImageRequest(IpUtil.get_Class_img + imgSrc, RequestMethod.GET);
+        request.addHeader("Referer", "http://202.196.240.43/jwweb/znpk/Pri_StuSel_rpt.aspx?m=lzj");
         request(0, request, bitmapCallBack, false, true);
     }
 
@@ -170,7 +184,7 @@ public class StudentScoreActivity extends BaseActivity {
                         @Override
                         public void run() {
                             if (bitmap != null) {
-                                mScoreImg.setImageBitmap(bitmap);
+                                mClassImg.setImageBitmap(bitmap);
                             }
                         }
                     });
@@ -185,54 +199,42 @@ public class StudentScoreActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.student_score_xn_choose, R.id.student_score_xq_choose
-            , R.id.student_score_toolbar_left, R.id.student_score_check})
+    @OnClick({R.id.student_class_toolbar_left, R.id.student_class_xq_choose, R.id.student_class_check})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.student_score_toolbar_left:
+            case R.id.student_class_toolbar_left:
                 finish();
                 break;
-            case R.id.student_score_xn_choose:
-                showXnPop();
+            case R.id.student_class_xq_choose:
+                showXqPop();
                 break;
-            case R.id.student_score_xq_choose:
-                if (TextUtils.isEmpty(mXnText.getText().toString())) {
-                    ToastUtil.showFaliureToast(mContext, "请选择学年");
-                } else {
-                    showXqPop();
-                }
-                break;
-            case R.id.student_score_check:
-                if (TextUtils.isEmpty(mXqText.getText().toString())) {
-                    ToastUtil.showFaliureToast(mContext, "请选择学期");
-                } else if (TextUtils.isEmpty(mXnText.getText().toString())) {
-                    ToastUtil.showFaliureToast(mContext, "请选择学年");
-                } else {
-                    doSearch();
-                }
+            case R.id.student_class_check:
+                doSearch();
                 break;
         }
     }
 
-    /**
-     * 弹出学期选择框
-     */
     private void showXqPop() {
-
         View view = LayoutInflater.from(mContext).inflate(R.layout.activity_student_xn_pop, null);
-        mXqPop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mXqPop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().density * 300), true);
         mXqPop.setContentView(view);
 
         ListView mListView = (ListView) view.findViewById(R.id.appointment_pop_list);
-        StudentXqAdapter mXqAdapter = new StudentXqAdapter(mContext, mXqLists);
+        KlassAdapter mXqAdapter = new KlassAdapter(mContext, mLists);
         mListView.setAdapter(mXqAdapter);
         //list点击事件
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                mXqText.setText("学期：" + mXqLists.get(i).getXq());
-                xq = i + "";
+                mXqText.setText("学年学期：" + mLists.get(i).getCname());
+                xn = mLists.get(i).getCname().substring(0, 4);
+                xq = mLists.get(i).getCname().substring(12, 13);
+                Log.d("tag", xn + "-" + xq);
+                if (xq.equals("一")) {
+                    xq = "0";
+                } else {
+                    xq = "1";
+                }
                 mXqPop.dismiss();
             }
         });
@@ -251,53 +253,6 @@ public class StudentScoreActivity extends BaseActivity {
         mXqPop.setBackgroundDrawable(dw);
         backgroundAlpha((Activity) mContext, 0.5f);//0.0-1.0
         mXqPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
-
-            @Override
-            public void onDismiss() {
-                backgroundAlpha((Activity) mContext, 1f);
-            }
-        });
-    }
-
-    /**
-     * 弹出学年选择框
-     */
-    private void showXnPop() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.activity_student_xn_pop, null);
-        mXnPop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().density * 300), true);
-        mXnPop.setContentView(view);
-
-        ListView mListView = (ListView) view.findViewById(R.id.appointment_pop_list);
-        StudentXnAdapter mXnAdapter = new StudentXnAdapter(mContext, mLists);
-        mListView.setAdapter(mXnAdapter);
-        //list点击事件
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                mXnText.setText("学年：" + mLists.get(i).getXntext());
-                xn = mLists.get(i).getXntext().substring(0, 4);
-                mXqLists.clear();
-                mXqLists = mLists.get(i).getXxxx();
-                mXqText.setText("学期：请选择");
-                mXnPop.dismiss();
-            }
-        });
-
-        View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_student_score, null);
-        // 点击外部消失
-        mXnPop.setBackgroundDrawable(new BitmapDrawable());
-        mXnPop.setOutsideTouchable(true);
-        //动画加显示
-        mXnPop.setAnimationStyle(R.style.animation_bottom);
-        mXnPop.showAtLocation(mainView, Gravity.BOTTOM, 0, 0);
-
-        //实例化一个ColorDrawable颜色为半透明
-        ColorDrawable dw = new ColorDrawable(0x00000000);
-        //设置PopupWindow弹出窗体的背景
-        mXnPop.setBackgroundDrawable(dw);
-        backgroundAlpha((Activity) mContext, 0.5f);//0.0-1.0
-        mXnPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
             public void onDismiss() {

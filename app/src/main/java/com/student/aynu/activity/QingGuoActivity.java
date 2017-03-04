@@ -51,6 +51,8 @@ public class QingGuoActivity extends BaseActivity {
     @BindView(R.id.qGuo_code_img)
     ImageView mCodeImg;
 
+    private boolean isGetCookie = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +64,6 @@ public class QingGuoActivity extends BaseActivity {
 
     private void initData() {
         //在cookie获取成功之前，无法获取验证码
-        mGetText.setEnabled(false);
         getCookie();
     }
 
@@ -126,7 +127,7 @@ public class QingGuoActivity extends BaseActivity {
             switch (what) {
                 case 0:
                     //cookie获取成功
-                    mGetText.setEnabled(true);
+                    isGetCookie = true;
                     break;
                 case 1:
                     Log.d("tag", responseInfo);
@@ -180,7 +181,11 @@ public class QingGuoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.qGuo_get:
-                getCode();
+                if (isGetCookie) {
+                    getCode();
+                } else {
+                    ToastUtil.showFaliureToast(mContext, "正在获取cookie...");
+                }
                 break;
             case R.id.qGuo_login:
                 checkInput();
