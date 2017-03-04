@@ -20,6 +20,12 @@
             android:text="教务管理" />
     </android.support.v7.widget.Toolbar>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/aynu"
+        android:scaleType="fitXY" />
+
     <LinearLayout
         style="@style/mine_order_linear_fff"
         android:layout_height="85dp">

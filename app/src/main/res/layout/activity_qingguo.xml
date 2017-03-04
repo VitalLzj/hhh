@@ -44,7 +44,7 @@
                 <EditText
                     android:id="@+id/qGuo_number"
                     style="@style/register_text_right"
-                    android:hint="请输入您的学号"
+                    android:hint="请输入您的学号(仅学生登录)"
                     android:inputType="number" />
 
                 <View

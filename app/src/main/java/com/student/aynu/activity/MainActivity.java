@@ -15,11 +15,11 @@ import android.widget.Toast;
 
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.fragment.StyleFragment;
 import com.student.aynu.fragment.ForumFragment;
 import com.student.aynu.fragment.HomeFragment;
 import com.student.aynu.fragment.InfoFragment;
 import com.student.aynu.fragment.MineFragment;
+import com.student.aynu.fragment.PicFragment;
 import com.student.aynu.util.ToastUtil;
 
 import butterknife.BindView;
@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 3:
                 if (mTab3 == null) {
-                    mTab3 = new StyleFragment();
+                    mTab3 = new PicFragment();
                     fragmentTransaction.add(R.id.main_content, mTab3);
                 } else {
                     fragmentTransaction.show(mTab3);

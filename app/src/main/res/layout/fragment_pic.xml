@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/pic_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/app_toolbar"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            style="@style/page_title"
+            android:text="校园风采" />
+    </android.support.v7.widget.Toolbar>
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/pic_recycler"
