@@ -11,10 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.student.aynu.R;
-import com.student.aynu.entity.Home_News;
-import com.student.aynu.entity.Info_Array;
-import com.student.aynu.entity.Info_Data;
-import com.student.aynu.entity.Info_News;
+import com.student.aynu.bean.Info_Array;
 
 import java.util.List;
 

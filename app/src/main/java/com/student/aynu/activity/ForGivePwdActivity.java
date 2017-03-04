@@ -2,8 +2,6 @@ package com.student.aynu.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ import android.widget.PopupWindow;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Base_entity;
+import com.student.aynu.bean.Base_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.Sha1Util;

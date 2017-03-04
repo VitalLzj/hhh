@@ -1,4 +1,4 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 /**
  * 基本的返回类型

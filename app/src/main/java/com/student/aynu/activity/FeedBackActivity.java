@@ -11,15 +11,13 @@ import android.widget.EditText;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Base_entity;
+import com.student.aynu.bean.Base_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Response;
 import com.yolanda.nohttp.rest.StringRequest;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 

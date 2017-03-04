@@ -1,4 +1,4 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 import java.util.List;
 

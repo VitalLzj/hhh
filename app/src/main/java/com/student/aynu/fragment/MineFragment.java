@@ -27,7 +27,7 @@ import com.student.aynu.activity.QingGuoActivity;
 import com.student.aynu.activity.UserInfoActivity;
 import com.student.aynu.activity.YbActivity;
 import com.student.aynu.base.BaseFragment;
-import com.student.aynu.entity.User_Info;
+import com.student.aynu.bean.User_Info;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;

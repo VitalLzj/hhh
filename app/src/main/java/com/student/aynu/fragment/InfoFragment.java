@@ -17,7 +17,7 @@ import com.student.aynu.R;
 import com.student.aynu.adapter.Info_LeftAdapter;
 import com.student.aynu.adapter.Info_RightAdapter;
 import com.student.aynu.base.BaseFragment;
-import com.student.aynu.entity.Info_Data;
+import com.student.aynu.bean.Info_Data;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;

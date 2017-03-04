@@ -1,13 +1,13 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 import java.util.List;
 
 /**
- * Created by lzj on 2016/12/23 0023.
+ * Created by lzj on 2017/3/4 0004.
  * 邮箱：976623696@qq.com
+ * 课表查询
  */
-public class Home_Title {
-
+public class Kclass {
 
     private int code;
     private String message;
@@ -39,23 +39,23 @@ public class Home_Title {
     }
 
     public static class DataBean {
-        private String title_id;
-        private String title_name;
+        private String cid;
+        private String cname;
 
-        public String getTitle_id() {
-            return title_id;
+        public String getCid() {
+            return cid;
         }
 
-        public void setTitle_id(String title_id) {
-            this.title_id = title_id;
+        public void setCid(String cid) {
+            this.cid = cid;
         }
 
-        public String getTitle_name() {
-            return title_name;
+        public String getCname() {
+            return cname;
         }
 
-        public void setTitle_name(String title_name) {
-            this.title_name = title_name;
+        public void setCname(String cname) {
+            this.cname = cname;
         }
     }
 }

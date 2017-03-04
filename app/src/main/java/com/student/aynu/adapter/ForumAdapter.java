@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.activity.PicActivity;
-import com.student.aynu.entity.Forum_entity;
+import com.student.aynu.bean.Forum_entity;
 
 import java.util.ArrayList;
 import java.util.List;

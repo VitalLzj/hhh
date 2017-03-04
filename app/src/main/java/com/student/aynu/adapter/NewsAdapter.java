@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.student.aynu.R;
-import com.student.aynu.entity.Home_News;
+import com.student.aynu.bean.Home_News;
 
 import java.util.List;
 

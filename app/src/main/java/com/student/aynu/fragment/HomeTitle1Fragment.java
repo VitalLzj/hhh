@@ -20,7 +20,7 @@ import com.student.aynu.R;
 import com.student.aynu.adapter.NewsAdapter;
 import com.student.aynu.base.BaseViewpagerFragment;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Home_News;
+import com.student.aynu.bean.Home_News;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.nohttp.JavaBeanRequest;
 import com.student.aynu.util.IpUtil;

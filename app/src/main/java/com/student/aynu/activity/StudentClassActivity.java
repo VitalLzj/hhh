@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.student.aynu.R;
 import com.student.aynu.adapter.KlassAdapter;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.entity.Kclass;
+import com.student.aynu.bean.Kclass;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.Sha1Util;

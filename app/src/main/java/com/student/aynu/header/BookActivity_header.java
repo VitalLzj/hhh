@@ -7,9 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.student.aynu.R;
-import com.student.aynu.entity.Book_Banner;
+import com.student.aynu.bean.Book_Banner;
 
 import java.util.ArrayList;
 import java.util.List;

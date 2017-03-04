@@ -21,7 +21,7 @@ import com.student.aynu.R;
 import com.student.aynu.adapter.BookAdapter;
 import com.student.aynu.base.BaseActivity;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Book_List;
+import com.student.aynu.bean.Book_List;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;

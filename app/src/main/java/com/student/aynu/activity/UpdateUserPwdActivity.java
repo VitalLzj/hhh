@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.student.aynu.R;
 import com.student.aynu.base.BaseActivity;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Base_entity;
+import com.student.aynu.bean.Base_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.Sha1Util;

@@ -23,7 +23,7 @@ import com.student.aynu.R;
 import com.student.aynu.adapter.StudentXnAdapter;
 import com.student.aynu.adapter.StudentXqAdapter;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.entity.Student;
+import com.student.aynu.bean.Student;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;

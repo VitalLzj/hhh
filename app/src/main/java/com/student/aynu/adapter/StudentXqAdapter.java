@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.student.aynu.R;
-import com.student.aynu.entity.Student;
+import com.student.aynu.bean.Student;
 
 import java.util.List;
 

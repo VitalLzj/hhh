@@ -1,13 +1,13 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 import java.util.List;
 
 /**
- * Created by lzj on 2017/2/28 0028.
+ * Created by lzj on 2016/12/23 0023.
  * 邮箱：976623696@qq.com
- * 图书检索banner
  */
-public class Book_Banner {
+public class Home_Title {
+
 
     private int code;
     private String message;
@@ -39,23 +39,23 @@ public class Book_Banner {
     }
 
     public static class DataBean {
-        private String bbid;
-        private String bburl;
+        private String title_id;
+        private String title_name;
 
-        public String getBbid() {
-            return bbid;
+        public String getTitle_id() {
+            return title_id;
         }
 
-        public void setBbid(String bbid) {
-            this.bbid = bbid;
+        public void setTitle_id(String title_id) {
+            this.title_id = title_id;
         }
 
-        public String getBburl() {
-            return bburl;
+        public String getTitle_name() {
+            return title_name;
         }
 
-        public void setBburl(String bburl) {
-            this.bburl = bburl;
+        public void setTitle_name(String title_name) {
+            this.title_name = title_name;
         }
     }
 }

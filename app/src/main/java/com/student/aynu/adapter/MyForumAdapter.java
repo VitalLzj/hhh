@@ -8,12 +8,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
-import com.student.aynu.entity.Forum_Pl;
-import com.student.aynu.entity.My_Forum;
+import com.student.aynu.bean.My_Forum;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
-import com.student.aynu.entity.Style_Img;
+import com.student.aynu.bean.Style_Img;
 
 import java.util.List;
 

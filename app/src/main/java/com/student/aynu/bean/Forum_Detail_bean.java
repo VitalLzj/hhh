@@ -1,15 +1,17 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 import java.util.List;
 
 /**
- * Created by lzj on 2017/2/17 0017.
+ * Created by lzj on 2017/2/22 0022.
  * 邮箱：976623696@qq.com
+ * 帖子详情
  */
-public class Forum_entity {
+public class Forum_Detail_bean {
 
     private int code;
     private String message;
+    
     private List<DataBean> data;
 
     public int getCode() {
@@ -46,7 +48,9 @@ public class Forum_entity {
         private String userAccount;
         private String userName;
         private String userHead;
-        private List<UrlData> forumImgs;
+
+
+        private List<ForumImgsBean> forumImgs;
 
         public String getFid() {
             return fid;
@@ -120,15 +124,15 @@ public class Forum_entity {
             this.userHead = userHead;
         }
 
-        public List<UrlData> getForumImgs() {
+        public List<ForumImgsBean> getForumImgs() {
             return forumImgs;
         }
 
-        public void setForumImgs(List<UrlData> forumImgs) {
+        public void setForumImgs(List<ForumImgsBean> forumImgs) {
             this.forumImgs = forumImgs;
         }
 
-        public static class UrlData {
+        public static class ForumImgsBean {
             private String fimgUrl;
 
             public String getFimgUrl() {

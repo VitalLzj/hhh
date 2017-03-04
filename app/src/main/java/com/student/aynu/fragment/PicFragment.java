@@ -23,7 +23,7 @@ import com.student.aynu.activity.PicActivity;
 import com.student.aynu.adapter.PicAdapter;
 import com.student.aynu.base.BaseFragment;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Style_Img;
+import com.student.aynu.bean.Style_Img;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.PicGridDemins;

@@ -1,4 +1,4 @@
-package com.student.aynu.entity;
+package com.student.aynu.bean;
 
 /**
  * Created by lzj on 2017/1/9 0009.

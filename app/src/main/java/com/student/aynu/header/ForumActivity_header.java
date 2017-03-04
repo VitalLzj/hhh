@@ -16,7 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.student.aynu.R;
 import com.student.aynu.activity.PicActivity;
 import com.student.aynu.adapter.Forum_PicAdapter;
-import com.student.aynu.entity.Forum_Detail_bean;
+import com.student.aynu.bean.Forum_Detail_bean;
 
 import java.util.ArrayList;
 import java.util.List;

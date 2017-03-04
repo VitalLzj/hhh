@@ -2,7 +2,6 @@ package com.student.aynu.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
-import com.student.aynu.entity.Book_List;
+import com.student.aynu.bean.Book_List;
 
 import java.util.List;
 

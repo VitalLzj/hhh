@@ -26,7 +26,7 @@ import com.student.aynu.activity.PublishActivity;
 import com.student.aynu.adapter.ForumAdapter;
 import com.student.aynu.base.BaseFragment;
 import com.student.aynu.constant.Constant;
-import com.student.aynu.entity.Forum_entity;
+import com.student.aynu.bean.Forum_entity;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.IpUtil;
 import com.student.aynu.util.ToastUtil;

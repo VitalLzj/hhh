@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.student.aynu.R;
-import com.student.aynu.entity.Info_Data;
+import com.student.aynu.bean.Info_Data;
 
 import java.util.List;
 

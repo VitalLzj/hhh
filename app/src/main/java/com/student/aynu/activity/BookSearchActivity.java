@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.student.aynu.R;
 import com.student.aynu.adapter.BookAdapter;
 import com.student.aynu.base.BaseActivity;
-import com.student.aynu.entity.Book_List;
+import com.student.aynu.bean.Book_List;
 import com.student.aynu.nohttp.HttpListener;
 import com.student.aynu.util.BookSearchGridDemins;
 import com.student.aynu.util.IpUtil;
