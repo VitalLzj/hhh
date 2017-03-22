@@ -50,7 +50,7 @@ public class InfoWebViewActivity extends BaseActivity {
         mContent_url = getIntent().getStringExtra("NEWS_URL");
         mName = getIntent().getStringExtra("NEWS_TYPE");
 
-        if (mContent_url == null || mName == null ) {
+        if (mContent_url == null || mName == null) {
             ToastUtil.showFaliureToast(mContext, "加载数据失败，请重新进入");
             return;
         }
@@ -60,9 +60,9 @@ public class InfoWebViewActivity extends BaseActivity {
         mWebView.loadUrl(mContent_url);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        mWebView.getSettings().setSupportZoom(true);
-        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.getSettings().setSupportZoom(true);//支持缩放
         mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.setWebViewClient(new webViewClient());
     }
 

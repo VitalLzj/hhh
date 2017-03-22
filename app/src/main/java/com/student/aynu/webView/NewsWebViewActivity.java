@@ -74,9 +74,9 @@ public class NewsWebViewActivity extends BaseActivity {
         mWebView.loadUrl(mContent_url);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        mWebView.getSettings().setSupportZoom(true);
-        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.getSettings().setSupportZoom(true);//支持缩放
         mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.setWebViewClient(new webViewClient());
     }
 
