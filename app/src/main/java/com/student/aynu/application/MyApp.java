@@ -2,7 +2,13 @@ package com.student.aynu.application;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.lzy.ninegrid.NineGridView;
+import com.student.aynu.R;
 import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
 import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.NoHttp;
@@ -21,6 +27,9 @@ public class MyApp extends Application {
                 .setNetworkExecutor(new OkHttpNetworkExecutor())
                 .setConnectTimeout(10 * 1000)
                 .setReadTimeout(10 * 1000));
+        //九宫格
+        NineGridView.setImageLoader(new GlideImageLoader());
+
     }
 
     ArrayList<Activity> list = new ArrayList<Activity>();
@@ -93,5 +102,24 @@ public class MyApp extends Application {
         // 杀死该应用进程
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
+    /**
+     * Glide 加载
+     */
+    private class GlideImageLoader implements NineGridView.ImageLoader {
+
+        @Override
+        public void onDisplayImage(Context context, ImageView imageView, String url) {
+            Glide.with(context).load(url)//
+                    .placeholder(R.drawable.ic_default_image)//
+                    .into(imageView);
+        }
+
+        @Override
+        public Bitmap getCacheImage(String url) {
+            return null;
+        }
+    }
+
 
 }

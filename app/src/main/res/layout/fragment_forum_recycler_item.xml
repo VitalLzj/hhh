@@ -41,12 +41,16 @@
         android:textColor="#222"
         android:textSize="12sp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/forum_Recycler"
-        android:layout_width="wrap_content"
+    <com.lzy.ninegrid.NineGridView
+        android:id="@+id/forum_nineGrid"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_left"
-        android:visibility="gone" />
+        android:layout_margin="8dp"
+        app:ngv_gridSpacing="3dp"
+        app:ngv_maxSize="9"
+        app:ngv_mode="grid"
+        app:ngv_singleImageRatio="1"
+        app:ngv_singleImageSize="250dp" />
 
 
     <RelativeLayout

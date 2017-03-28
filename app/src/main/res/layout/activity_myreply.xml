@@ -27,5 +27,6 @@
 
     <ImageView
         android:id="@+id/myReply_no_data"
-        style="@style/no_data" />
+        style="@style/no_data"
+        android:src="@mipmap/nodate" />
 </LinearLayout>

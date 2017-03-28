@@ -11,7 +11,7 @@ public class Forum_Detail_bean {
 
     private int code;
     private String message;
-    
+
     private List<DataBean> data;
 
     public int getCode() {
@@ -134,6 +134,7 @@ public class Forum_Detail_bean {
 
         public static class ForumImgsBean {
             private String fimgUrl;
+            private String fthumbUrl;
 
             public String getFimgUrl() {
                 return fimgUrl;
@@ -141,6 +142,14 @@ public class Forum_Detail_bean {
 
             public void setFimgUrl(String fimgUrl) {
                 this.fimgUrl = fimgUrl;
+            }
+
+            public String getFthumbUrl() {
+                return fthumbUrl;
+            }
+
+            public void setFthumbUrl(String fthumbUrl) {
+                this.fthumbUrl = fthumbUrl;
             }
         }
     }

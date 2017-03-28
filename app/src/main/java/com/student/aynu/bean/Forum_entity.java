@@ -130,6 +130,7 @@ public class Forum_entity {
 
         public static class UrlData {
             private String fimgUrl;
+            private String fthumbUrl;
 
             public String getFimgUrl() {
                 return fimgUrl;
@@ -137,6 +138,14 @@ public class Forum_entity {
 
             public void setFimgUrl(String fimgUrl) {
                 this.fimgUrl = fimgUrl;
+            }
+
+            public String getFthumbUrl() {
+                return fthumbUrl;
+            }
+
+            public void setFthumbUrl(String fthumbUrl) {
+                this.fthumbUrl = fthumbUrl;
             }
         }
     }

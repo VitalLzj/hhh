@@ -46,12 +46,16 @@
 
             <View style="@style/ccc_1px" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/publish_forum_recycler"
+            <com.lzy.ninegrid.NineGridView
+                android:id="@+id/nineGrid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_left"
-                android:visibility="gone" />
+                android:layout_margin="8dp"
+                app:ngv_gridSpacing="3dp"
+                app:ngv_maxSize="9"
+                app:ngv_mode="grid"
+                app:ngv_singleImageRatio="1"
+                app:ngv_singleImageSize="250dp" />
 
             <ImageView
                 android:id="@+id/publish_forum_choose"

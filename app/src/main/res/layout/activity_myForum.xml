@@ -28,6 +28,7 @@
 
     <ImageView
         android:id="@+id/myForum_no_data"
+        android:src="@mipmap/nodate"
         style="@style/no_data" />
 
 </LinearLayout>

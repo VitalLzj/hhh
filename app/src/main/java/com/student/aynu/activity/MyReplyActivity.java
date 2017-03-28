@@ -243,6 +243,9 @@ public class MyReplyActivity extends BaseActivity {
                         //请求成功，更新ui
                         mHandler.sendEmptyMessage(0);
                     } else {
+                        mLists = forum.getData();
+                        //请求成功，更新ui
+                        mHandler.sendEmptyMessage(0);
                         mLRecyclerView.setEmptyView(mErrorImg);
                     }
                     break;

@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lzy.ninegrid.ImageInfo;
+import com.lzy.ninegrid.NineGridView;
+import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.student.aynu.R;
 import com.student.aynu.activity.PicActivity;
@@ -61,30 +64,17 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.MyViewHolder
         holder.mDzText.setText(mLists.get(position).getFzan_num());
 
         if (mLists.get(position).getForumImgs().size() != 0) {
-            holder.mRecycler.setVisibility(View.VISIBLE);
-            mImgs = new ArrayList<>();
+            holder.mNineGrid.setVisibility(View.VISIBLE);
+            ArrayList<ImageInfo> imageInfos = new ArrayList<>();
             for (int i = 0; i < mLists.get(position).getForumImgs().size(); i++) {
-                mImgs.add(mLists.get(position).getForumImgs().get(i).getFimgUrl());
+                ImageInfo info = new ImageInfo();
+                info.setBigImageUrl(mLists.get(position).getForumImgs().get(i).getFimgUrl());
+                info.setThumbnailUrl(mLists.get(position).getForumImgs().get(i).getFthumbUrl());
+                imageInfos.add(info);
             }
-
-            GridLayoutManager manager = new GridLayoutManager(mContext, 3);
-            manager.setOrientation(GridLayoutManager.VERTICAL);
-            holder.mRecycler.setLayoutManager(manager);
-            mAdapter = new Forum_PicAdapter(mImgs, mContext);
-            holder.mRecycler.setAdapter(mAdapter);
-
-            mAdapter.setOnPhotoClcikListener(new Forum_PicAdapter.onPhotoClcikListener() {
-                @Override
-                public void onClick(View v, int ImagePosition) {
-//                    Log.d("tag", "position=" +mLists.get(position).getForumImgs().get(ImagePosition).getFimgUrl());
-                    Intent intent = new Intent(mContext, PicActivity.class);
-                    intent.putExtra("img_url", mLists.get(position).getForumImgs().get(ImagePosition).getFimgUrl());
-                    mContext.startActivity(intent);
-                }
-            });
-
+            holder.mNineGrid.setAdapter(new NineGridViewClickAdapter(mContext, imageInfos));
         } else {
-            holder.mRecycler.setVisibility(View.GONE);
+            holder.mNineGrid.setVisibility(View.GONE);
         }
 
     }
@@ -105,8 +95,8 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.MyViewHolder
         TextView mTimeText;
         @BindView(R.id.forum_recycler_content)
         TextView mContentText;
-        @BindView(R.id.forum_Recycler)
-        RecyclerView mRecycler;
+        @BindView(R.id.forum_nineGrid)
+        NineGridView mNineGrid;
         @BindView(R.id.forum_recycler_pl_num)
         TextView mPlText;
         @BindView(R.id.forum_recycler_dz_num)

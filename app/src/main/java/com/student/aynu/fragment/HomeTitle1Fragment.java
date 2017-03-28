@@ -184,6 +184,9 @@ public class HomeTitle1Fragment extends BaseViewpagerFragment {
                         //请求成功，更新ui
                         mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                     } else {
+                        mLists = response.get().getData();
+                        //请求成功，更新ui
+                        mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                         ToastUtil.showFaliureToast(getActivity(), response.get().getMessage());
                     }
                     break;

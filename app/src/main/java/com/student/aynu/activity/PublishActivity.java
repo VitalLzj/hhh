@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.ninegrid.ImageInfo;
+import com.lzy.ninegrid.NineGridView;
+import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 import com.student.aynu.R;
 import com.student.aynu.adapter.Forum_PicAdapter;
 import com.student.aynu.base.BaseActivity;
@@ -46,6 +49,7 @@ import butterknife.OnClick;
 /**
  * Created by lzj on 2017/2/15 0015.
  * 邮箱：976623696@qq.com
+ * 发表论坛
  */
 public class PublishActivity extends BaseActivity {
 
@@ -56,11 +60,8 @@ public class PublishActivity extends BaseActivity {
     private ArrayList<String> path = new ArrayList<>();
     //存放所选图片的RecyclerView;
 
-    @BindView(R.id.publish_forum_recycler)
-    RecyclerView mRecycler;
-    Forum_PicAdapter mAdapter;
-    //    @BindView(R.id.publish_forum_title)
-//    EditText mTitleEdit;
+    @BindView(R.id.nineGrid)
+    NineGridView mNineGrid;
     @BindView(R.id.publish_forum_content)
     EditText mContentEdit;
     @BindView(R.id.publish_forum_relative)
@@ -199,7 +200,7 @@ public class PublishActivity extends BaseActivity {
                 // 开启多选   （默认为多选）  (单选 为 singleSelect)
                 .crop()
                 // 多选时的最大数量   （默认 3 张）
-                .mutiSelectMaxSize(3)
+                .mutiSelectMaxSize(9)
                 // 已选择的图片路径
                 .pathList(path)
                 // 拍照后存放的图片路径（默认 /temp/picture）
@@ -225,29 +226,19 @@ public class PublishActivity extends BaseActivity {
             Log.d("tag", "size=" + pathList.size());
             //如果有图片选中显示
             if (pathList.size() > 0) {
-                mRecycler.setVisibility(View.VISIBLE);
+                mNineGrid.setVisibility(View.VISIBLE);
             } else {
-                mRecycler.setVisibility(View.GONE);
+                mNineGrid.setVisibility(View.GONE);
             }
             //垂直方向
-            if (null == mAdapter) {
-                GridLayoutManager manager = new GridLayoutManager(mContext, 3);
-                manager.setOrientation(GridLayoutManager.VERTICAL);
-                mRecycler.setLayoutManager(manager);
-                mAdapter = new Forum_PicAdapter(pathList, mContext);
-                mRecycler.setAdapter(mAdapter);
-            } else {
-                mAdapter = new Forum_PicAdapter(pathList, mContext);
-                mRecycler.setAdapter(mAdapter);
+            ArrayList<ImageInfo> imageInfos = new ArrayList<>();
+            for (int i = 0; i < pathList.size(); i++) {
+                ImageInfo info = new ImageInfo();
+                info.setBigImageUrl(pathList.get(i));
+                info.setThumbnailUrl(pathList.get(i));
+                imageInfos.add(info);
             }
-            mAdapter.setOnPhotoClcikListener(new Forum_PicAdapter.onPhotoClcikListener() {
-                @Override
-                public void onClick(View v, int position) {
-                    Intent intent = new Intent(mContext, PicActivity.class);
-                    intent.putExtra("img_url", pathList.get(position));
-                    startActivity(intent);
-                }
-            });
+            mNineGrid.setAdapter(new NineGridViewClickAdapter(mContext, imageInfos));
         }
     }
 }

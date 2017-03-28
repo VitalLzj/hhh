@@ -158,6 +158,7 @@ public class ForumFragment extends BaseFragment {
             switch (msg.what) {
                 //刷新----第一次进入
                 case 0:
+                    Log.d(TAG, "handleMessage: ");
                     mAdapter.refresh(mLists);
                     mLRecycler.refreshComplete();
                     mLRecyclerAdapter.notifyDataSetChanged();
@@ -199,6 +200,9 @@ public class ForumFragment extends BaseFragment {
                         //请求成功，更新ui
                         mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                     } else {
+                        mLists = forum.getData();
+                        //请求成功，更新ui
+                        mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                         ToastUtil.showFaliureToast(mContext, forum.getMessage());
                     }
                     break;

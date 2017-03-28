@@ -48,4 +48,6 @@ dependencies {
     //图片先择期
     compile 'com.yancy.imageselector:imageselector:1.3.3'
     compile project(':library')
+    //qq空间
+    compile 'com.lzy.widget:ninegridview:0.2.0'
 }

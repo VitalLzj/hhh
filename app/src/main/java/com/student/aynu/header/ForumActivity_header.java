@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.lzy.ninegrid.ImageInfo;
+import com.lzy.ninegrid.NineGridView;
+import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 import com.student.aynu.R;
 import com.student.aynu.activity.PicActivity;
 import com.student.aynu.adapter.Forum_PicAdapter;
@@ -31,15 +34,14 @@ public class ForumActivity_header extends LinearLayout {
     private TextView mUserText;
     private TextView mInfoText;
     private TextView mTimeText;
-    private RecyclerView mRecycler;
-    private List<String> mImgs;
-    private Forum_PicAdapter mAdapter;
+    private NineGridView mNineView;
     public TextView mZanText;
     public TextView mHuiFuText;
     public RelativeLayout mZanLayout;
     public ImageView mZanImg;
 
     private Forum_Detail_bean.DataBean mHeadItem;
+    private Context mContext;
 
 
     public ForumActivity_header(Context context) {
@@ -58,6 +60,7 @@ public class ForumActivity_header extends LinearLayout {
     }
 
     private void init(Context context) {
+        this.mContext=context;
         View v = inflate(context, R.layout.activity_forum_header, this);
         mHeadImg = (ImageView) v.findViewById(R.id.forum_header_img);
         mUserText = (TextView) v.findViewById(R.id.forum_header_user);
@@ -67,7 +70,7 @@ public class ForumActivity_header extends LinearLayout {
         mHuiFuText = (TextView) v.findViewById(R.id.forum_header_pl_num);
         mZanLayout = (RelativeLayout) v.findViewById(R.id.forum_header_layout);
         mZanImg = (ImageView) v.findViewById(R.id.forum_header_dz);
-        mRecycler = (RecyclerView) v.findViewById(R.id.forum_Recycler);
+        mNineView = (NineGridView) v.findViewById(R.id.forum_header_nineGrid);
     }
 
     public void setData(final Forum_Detail_bean.DataBean mHeadItem, final Context context) {
@@ -85,29 +88,17 @@ public class ForumActivity_header extends LinearLayout {
         mZanText.setText(mHeadItem.getFzan_num());
 
         if (mHeadItem.getForumImgs().size() != 0) {
-            mRecycler.setVisibility(View.VISIBLE);
-            mImgs = new ArrayList<>();
-            for (int i = 0; i < mHeadItem.getForumImgs().size(); i++) {
-                mImgs.add(mHeadItem.getForumImgs().get(i).getFimgUrl());
+            mNineView.setVisibility(View.VISIBLE);
+            ArrayList<ImageInfo> imageInfos = new ArrayList<>();
+            for (int i = 0; i <mHeadItem.getForumImgs().size(); i++) {
+                ImageInfo info = new ImageInfo();
+                info.setBigImageUrl(mHeadItem.getForumImgs().get(i).getFimgUrl());
+                info.setThumbnailUrl(mHeadItem.getForumImgs().get(i).getFthumbUrl());
+                imageInfos.add(info);
             }
-
-            GridLayoutManager manager = new GridLayoutManager(context, 3);
-            manager.setOrientation(GridLayoutManager.VERTICAL);
-            mRecycler.setLayoutManager(manager);
-            mAdapter = new Forum_PicAdapter(mImgs, context);
-            mRecycler.setAdapter(mAdapter);
-
-            mAdapter.setOnPhotoClcikListener(new Forum_PicAdapter.onPhotoClcikListener() {
-                @Override
-                public void onClick(View v, int ImagePosition) {
-                    Intent intent = new Intent(context, PicActivity.class);
-                    intent.putExtra("img_url", mHeadItem.getForumImgs().get(ImagePosition).getFimgUrl());
-                    context.startActivity(intent);
-                }
-            });
-
+            mNineView.setAdapter(new NineGridViewClickAdapter(mContext, imageInfos));
         } else {
-            mRecycler.setVisibility(View.GONE);
+            mNineView.setVisibility(View.GONE);
         }
 
 

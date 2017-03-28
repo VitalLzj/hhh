@@ -251,6 +251,9 @@ public class MyForumActivity extends BaseActivity {
                         //请求成功，更新ui
                         mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                     } else {
+                        mLists = forum1.getData();
+                        //请求成功，更新ui
+                        mHandler.sendEmptyMessageDelayed(0, Constant.DELAY_TIME);
                         ToastUtil.showFaliureToast(mContext, forum1.getMessage());
                     }
                     break;
