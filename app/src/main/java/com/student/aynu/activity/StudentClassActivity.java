@@ -239,7 +239,7 @@ public class StudentClassActivity extends BaseActivity {
             }
         });
 
-        View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_student_score, null);
+        View mainView = LayoutInflater.from(mContext).inflate(R.layout.activity_student_class, null);
         // 点击外部消失
         mXqPop.setBackgroundDrawable(new BitmapDrawable());
         mXqPop.setOutsideTouchable(true);

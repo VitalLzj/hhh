@@ -161,6 +161,7 @@ public class ForumFragment extends BaseFragment {
                     Log.d(TAG, "handleMessage: ");
                     mAdapter.refresh(mLists);
                     mLRecycler.refreshComplete();
+                    mAdapter.notifyDataSetChanged();
                     mLRecyclerAdapter.notifyDataSetChanged();
                     now_page = 2;
                     break;
@@ -186,6 +187,7 @@ public class ForumFragment extends BaseFragment {
                 //第一次加载
                 case 0:
                     if (forum.getCode() == 0) {
+                        Log.d(TAG, "onSucceed: ");
                         mLists = forum.getData();
                         //请求成功，更新ui
                         mHandler.sendEmptyMessage(0);
@@ -209,7 +211,6 @@ public class ForumFragment extends BaseFragment {
                 //加载更多
                 case 2:
                     if (forum.getCode() == 0) {
-                        Log.d(TAG, "0");
                         mLists.addAll(forum.getData());
                         if (forum.getData().size() > 0) {
                             //加载成功

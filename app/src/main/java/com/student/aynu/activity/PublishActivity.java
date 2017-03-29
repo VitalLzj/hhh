@@ -80,6 +80,12 @@ public class PublishActivity extends BaseActivity {
         initEvent();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mApplication.uname_token = getSharedPreferences("TOKEN", MODE_PRIVATE).getString("token", "");
+    }
+
     private void initEvent() {
         mContentEdit.addTextChangedListener(new TextWatcher() {
             @Override
